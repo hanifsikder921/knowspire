@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
+
+
+[data-theme="light"] .theme-gradient {
+  background-image: linear-gradient(to top, #3d30e9, #6c27ad);
+  color: #0a091d;
+}
+[data-theme="dark"] .theme-gradient {
+  background-image: linear-gradient(to top,  #0a091d, #371557);
+  color: white;
+}
