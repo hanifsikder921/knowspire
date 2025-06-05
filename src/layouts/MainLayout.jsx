@@ -10,7 +10,7 @@ const MainLayout = () => {
                 <Navbar />
             </header>
 
-            <div className='md:w-11/12 mx-auto'>
+            <div className='md:w-11/12 mx-auto my-5'>
                 <main className="min-h-screen bg-opacity-80">
                     <section>
                         <Outlet />

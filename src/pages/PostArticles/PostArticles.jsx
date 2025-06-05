@@ -5,6 +5,8 @@ import axios from 'axios';
 
 const PostArticles = () => {
     const { user } = useContext(AuthContext);
+    console.log(user);
+    
     const [formData, setFormData] = useState({
         title: '',
         content: '',
@@ -25,6 +27,7 @@ const PostArticles = () => {
             tags: rawData.tags.split(',').map(tag => tag.trim()),
             authorEmail: user?.email,
             authorName: user?.displayName,
+            authorAvatar:user?.photoURL
         };
 
         try {
