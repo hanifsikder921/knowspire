@@ -39,10 +39,12 @@ const Navbar = () => {
             {[
                 { path: "/", label: "Home" },
                 { path: "/allArticles", label: "All Articles" },
-                { path: "/myArticles", label: "My Article" },
+                ...(user ? [
+                    { path: "/myArticles", label: "My Article" },
+                    { path: "/postArticles", label: "Post Article" },
+                ] : []),
                 { path: "/about", label: "About" },
                 { path: "/support", label: "Support" },
-
             ].map(({ path, label }) => (
                 <NavLink
                     key={path}
@@ -56,12 +58,7 @@ const Navbar = () => {
                 >
                     {label}
                 </NavLink>
-
-            ))
-            }
-
-
-
+            ))}
 
 
 
@@ -70,7 +67,7 @@ const Navbar = () => {
                 user ? (
                     <button className="block md:hidden px-4 py-2 text-white rounded-md hover:bg-orange-600 transition">
                         <Link
-                            onClick={'handleLogout'}
+                            onClick={handleLogout}
                             to="/auth/login"
                             className="btn "
                         >

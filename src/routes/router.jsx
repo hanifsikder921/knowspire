@@ -8,6 +8,8 @@ import About from "../pages/About/About";
 import AllArticlex from "../pages/AllArticles/AllArticlex";
 import MyArticles from "../pages/MyArticles/MyArticles";
 import Support from "../pages/Support/Support";
+import PostArticles from "../pages/PostArticles/PostArticles";
+import axios from "axios";
 
 
 
@@ -28,12 +30,18 @@ const router = createBrowserRouter([
             },
             {
                 path:'/allArticles',
+                loader: () => axios(`${import.meta.env.VITE_API_URL}/articles`),
                 Component:AllArticlex
 
             },
             {
                 path:'/myArticles',
                 Component:MyArticles
+
+            },
+            {
+                path:'/postArticles',
+                Component:PostArticles
 
             },
             
