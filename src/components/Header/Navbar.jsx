@@ -23,6 +23,7 @@ const Navbar = () => {
     const handleLogout = () => {
         logoutUser()
             .then(() => {
+                localStorage.removeItem('token');
                 Swal.fire("Success", "Logout successfully", "success");
                 navigate("/auth/login");
             })
@@ -40,7 +41,7 @@ const Navbar = () => {
                 { path: "/", label: "Home" },
                 { path: "/allArticles", label: "All Articles" },
                 ...(user ? [
-                    { path: "/myArticles", label: "My Article" },
+                    { path: `/my-added-article/${user?.email}`, label: "My Article" },
                     { path: "/postArticles", label: "Post Article" },
                 ] : []),
                 { path: "/about", label: "About" },

@@ -34,7 +34,10 @@ const ArticleCard = ({ article }) => {
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis...
                 </p>
 
-                <button className='btn btn-primary my-2'>Read More</button>
+                <Link to={`/details/${_id}`}>
+                    <button className='btn btn-primary my-2'>Read More</button>
+                </Link>
+
 
                 {/* Author Section */}
                 <div className="flex items-center justify-between mt-auto pt-3">
