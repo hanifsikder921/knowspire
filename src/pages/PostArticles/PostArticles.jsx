@@ -27,7 +27,8 @@ const PostArticles = () => {
             tags: rawData.tags.split(',').map(tag => tag.trim()),
             authorEmail: user?.email,
             authorName: user?.displayName,
-            authorAvatar:user?.photoURL
+            authorAvatar:user?.photoURL,
+            author_id:user?.uid
         };
 
         try {

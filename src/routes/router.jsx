@@ -73,7 +73,7 @@ const router = createBrowserRouter([
                         return null; 
                     }
                 },
-                Component: () => <PrivateRoute><Details/></PrivateRoute>
+                Component: Details
             },
 
 

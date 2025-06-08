@@ -74,6 +74,7 @@ const Details = () => {
         try {
             const commentData = {
                 user: user.displayName,
+                userId:user.uid,
                 userEmail: user.email,
                 userPhoto: user.photoURL,
                 text: newComment,
