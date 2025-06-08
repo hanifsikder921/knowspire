@@ -1,5 +1,6 @@
 import { Link } from 'react-router';
 
+
 const ArticleCard = ({ article }) => {
     const {
         _id,
@@ -10,6 +11,9 @@ const ArticleCard = ({ article }) => {
         category,
         authorAvatar // Optional: যদি প্রোফাইল পিকচার থাকে
     } = article;
+
+
+  
 
     return (
         <div className="rounded-2xl shadow hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col shadow-amber-300 bg-[#0000004f]">

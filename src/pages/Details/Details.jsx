@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router';
-import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../provider/AuthProvider';
+import RecentCard from '../../components/ArticleCard/RecentCard';
+import { FcLike } from "react-icons/fc";
+import { GrFavorite } from "react-icons/gr";
 
 const Details = () => {
     const article = useLoaderData();
@@ -156,7 +158,7 @@ const Details = () => {
     }
 
     return (
-        <div className='md:max-w-7xl  mx-auto p-2 grid grid-cols-1 md:grid-cols-3'>
+        <div className='md:max-w-7xl  mx-auto p-2 grid grid-cols-1 md:grid-cols-3 gap-4'>
             <section className='col-span-2 '>
                 <div className='space-y-3 shadow shadow-amber-100 p-2 rounded-2xl bg-[#1574c24b]'>
 
@@ -168,12 +170,22 @@ const Details = () => {
                         <h2 className='text-3xl font-semibold'>{title}</h2>
                         <p className='text-base'>{content}</p>
 
-                        {/* Like Button */}
-                        <div className="mt-4">
-                            <button onClick={handleLike} className="flex items-center gap-1 text-xl text-red-500">
-                                {liked ? <FaHeart /> : <FaRegHeart />}
+                        {/* Like Button  and comment*/}
+                        <div className="mt-4 flex items-center gap-2">
+                            <button onClick={handleLike} className="flex items-center gap-2 text-xl text-red-500 btn rounded-2xl">
+                                {liked ? <FcLike /> : <GrFavorite />}
                                 <span>{likedBy.length + (liked && !likedBy.includes(user?.email) ? 1 : 0) - (!liked && likedBy.includes(user?.email) ? 1 : 0)}</span>
                             </button>
+                            <button className='btn rounded-2xl'>{comments.length} Comments</button>
+                        </div>
+                        {/* tag get  */}
+                        <div>
+                            
+                            <h2 className='md:my-4 text-2xl font-semibold'>Tags</h2>
+                            {
+                                tags.map(tag=> <button className='btn  btn-dash mr-2'>{tag}</button>)
+                            }
+
                         </div>
 
                         <h2 className='md:mt-4 text-2xl font-semibold'>Author</h2>
@@ -262,14 +274,16 @@ const Details = () => {
                 </div>
             </section>
 
-            <section className=' p-4'>
-                <p>Some Recent Posts Showing here ....</p>
+            <section className='shadow shadow-amber-100 p-4 rounded-2xl bg-[#1574c24b] '>
+                <RecentCard></RecentCard>
             </section>
         </div>
     );
 };
 
 export default Details;
+
+
 
 
 
