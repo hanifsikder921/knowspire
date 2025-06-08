@@ -76,7 +76,7 @@ const BannerSlider = () => {
     ];
 
     return (
-        <div className="relative mx-auto overflow-hidden rounded-lg">
+        <div className="relative mx-auto overflow-hidden rounded-lg p-2 md:p-0">
             <Slider {...settings}>
                 {slides.map((slide, index) => (
                     <div key={index}>
@@ -94,7 +94,7 @@ const BannerSlider = () => {
                                         <span className="bg-blue-500 text-white text-xs font-medium px-3 py-1 rounded-full shadow mb-2 inline-block">
                                             {slide.category}
                                         </span>
-                                        <h2 className="text-3xl md:text-5xl font-bold mb-4 ">
+                                        <h2 className="text-3xl md:text-5xl font-bold mb-2 md:mb-4 ">
                                             <Typewriter
                                                 options={{
                                                     strings: [`${slide.title}`],
@@ -107,7 +107,7 @@ const BannerSlider = () => {
 
 
 
-                                        <Link to={slide.route} class="inline-flex items-center justify-center my-5 w-full px-8 py-4 text-base font-bold leading-6 text-white bg-indigo-600 border border-transparent rounded-full md:w-auto hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">
+                                        <Link to={slide.route} className="inline-flex items-center justify-center my-5 w-fit px-3 md:px-8 py-1 md:py-4 text-base font-bold leading-6 text-white bg-indigo-600 rounded-2xl hover:bg-indigo-700">
                                             Explore {slide.category}
                                         </Link>
                                     </div>

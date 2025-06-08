@@ -29,6 +29,10 @@ const CatArticleCard = ({ article }) => {
                 <h3 className="font-bold text-xl mb-2 text-gray-800 line-clamp-2">
                     {article.title}
                 </h3>
+                <p className="text-emerald-500 text-sm bg-emerald-50 border border-emerald-500 rounded-2xl px-3  w-fit">
+                    {article.category}
+                </p>
+
 
                 {/* Content preview with different lengths for mobile and desktop */}
                 <p className="text-gray-600 text-base mb-4 md:hidden">

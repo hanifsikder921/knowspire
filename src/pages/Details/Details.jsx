@@ -160,7 +160,7 @@ const Details = () => {
 
     return (
         <div className='md:max-w-7xl  mx-auto p-2 grid grid-cols-1 md:grid-cols-3 gap-4'>
-            <section className='col-span-2 '>
+            <section className='md:col-span-2 '>
                 <div className='space-y-3 shadow shadow-amber-100 p-2 rounded-2xl bg-[#1574c24b]'>
 
                     <div className='p-2'>
@@ -276,7 +276,7 @@ const Details = () => {
                 </div>
             </section>
 
-            <section className='shadow shadow-amber-100 p-4 rounded-2xl bg-[#1574c24b] '>
+            <section className='shadow shadow-amber-100 p-4 rounded-2xl bg-[#1574c24b]'>
                 <RecentCard></RecentCard>
             </section>
         </div>
