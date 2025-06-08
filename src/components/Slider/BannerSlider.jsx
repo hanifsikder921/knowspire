@@ -7,10 +7,10 @@ import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import { Link } from 'react-router';
 
 // Import all images
-import r1 from "../../assets/r1.jpg";
-import r2 from "../../assets/r2.jpg";
-import r3 from "../../assets/r3.jpg";
-import r4 from "../../assets/r4.jpg";
+import health from "../../assets/health.jpeg";
+import business from "../../assets/businesss.jpeg";
+import education from "../../assets/education.jpeg";
+import technology from "../../assets/technology.jpeg";
 
 // Custom Arrow Components
 const NextArrow = ({ onClick }) => (
@@ -46,32 +46,32 @@ const BannerSlider = () => {
 
     const slides = [
         {
-            img: r1,
+            img: technology,
             title: "Explore Technology Articles",
             desc: "Discover the latest trends and innovations in technology world.",
             category: "Technology",
-            route: "/technology"
+            route: "/cat/technology"
         },
         {
-            img: r2,
+            img: education,
             title: "Educational Resources",
             desc: "Find valuable learning materials and educational insights.",
             category: "Education",
-            route: "/education"
+            route: "/cat/education"
         },
         {
-            img: r3,
+            img: health,
             title: "Health & Wellness Guides",
             desc: "Get expert advice on health, fitness and mental wellbeing.",
             category: "Health",
-            route: "/health"
+            route: "/cat/health"
         },
         {
-            img: r4,
+            img: business,
             title: "Business Strategies",
             desc: "Learn about entrepreneurship, management and market trends.",
             category: "Business",
-            route: "/business"
+            route: "/cat/business"
         }
     ];
 
@@ -105,12 +105,10 @@ const BannerSlider = () => {
                                         </h2>
                                         <p className="text-lg">{slide.desc}</p>
 
-                                        <Link to={slide.route} className="relative inline-flex items-center justify-center p-4 px-6 py-2 my-5 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-purple-500 rounded-full shadow-md group">
-                                            <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-purple-500 group-hover:translate-x-0 ease">
-                                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                                            </span>
-                                            <span className="absolute flex items-center justify-center w-full h-full text-purple-500 transition-all duration-300 transform group-hover:translate-x-full ease">Explore {slide.category}</span>
-                                            <span className="relative invisible">Explore {slide.category}</span>
+
+
+                                        <Link to={slide.route} class="inline-flex items-center justify-center my-5 w-full px-8 py-4 text-base font-bold leading-6 text-white bg-indigo-600 border border-transparent rounded-full md:w-auto hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">
+                                            Explore {slide.category}
                                         </Link>
                                     </div>
                                 </div>

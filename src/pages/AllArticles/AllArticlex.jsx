@@ -24,7 +24,7 @@ const AllArticles = () => {
     const filteredArticles = articles.filter(article => {
         const matchesCategory = filterCategory ? article.category === filterCategory : true;
         const matchesSearch = article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                             article.authorName.toLowerCase().includes(searchTerm.toLowerCase());
+            article.authorName.toLowerCase().includes(searchTerm.toLowerCase());
 
         return matchesCategory && matchesSearch;
     });
@@ -39,26 +39,26 @@ const AllArticles = () => {
                         </div>
 
                         <div className="flex gap-2 items-center mx-2">
-                            <button 
-                                onClick={() => handleFilterChange('Technology')} 
+                            <button
+                                onClick={() => handleFilterChange('Technology')}
                                 className={`btn ${filterCategory === 'Technology' ? 'bg-blue-500 text-white' : ''}`}
                             >
                                 Technology
                             </button>
-                            <button 
-                                onClick={() => handleFilterChange('Education')} 
+                            <button
+                                onClick={() => handleFilterChange('Education')}
                                 className={`btn ${filterCategory === 'Education' ? 'bg-blue-500 text-white' : ''}`}
                             >
                                 Education
                             </button>
-                            <button 
-                                onClick={() => handleFilterChange('Health')} 
+                            <button
+                                onClick={() => handleFilterChange('Health')}
                                 className={`btn ${filterCategory === 'Health' ? 'bg-blue-500 text-white' : ''}`}
                             >
                                 Health
                             </button>
-                            <button 
-                                onClick={() => handleFilterChange('Business')} 
+                            <button
+                                onClick={() => handleFilterChange('Business')}
                                 className={`btn ${filterCategory === 'Business' ? 'bg-blue-500 text-white' : ''}`}
                             >
                                 Business

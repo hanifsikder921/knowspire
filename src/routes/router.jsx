@@ -12,6 +12,8 @@ import axios from "axios";
 import PrivateRoute from "../provider/PrivateRoute";
 import MyArticles from "../pages/MyArticles/MyArticles"
 import Details from "../pages/Details/Details";
+import CategoryLayout from "../layouts/CategoryLayout";
+import UniversalCategory from "../pages/CategoryPage/UniversalCategory";
 
 
 
@@ -39,8 +41,8 @@ const router = createBrowserRouter([
             },
             {
                 path: '/postArticles',
-                Component:()=> <PrivateRoute><PostArticles/></PrivateRoute>
-                
+                Component: () => <PrivateRoute><PostArticles /></PrivateRoute>
+
 
             },
 
@@ -61,7 +63,7 @@ const router = createBrowserRouter([
                 },
                 element: <PrivateRoute><MyArticles /></PrivateRoute>
             },
-             {
+            {
                 path: '/details/:id',
                 loader: async ({ params }) => {
                     try {
@@ -70,11 +72,12 @@ const router = createBrowserRouter([
                         return res.json();
                     } catch (err) {
                         console.error(err.message);
-                        return null; 
+                        return null;
                     }
                 },
                 Component: Details
             },
+
 
 
 
@@ -102,7 +105,20 @@ const router = createBrowserRouter([
                 Component: Register
             }
         ]
+    },
+    {
+        path: '/cat',
+        Component: CategoryLayout,
+        children: [
+            {
+                path: '/cat/:category',
+                loader: () => axios(`${import.meta.env.VITE_API_URL}/articles`),
+                Component: UniversalCategory
+            }    
+        ]
     }
+
+
 
 ])
 

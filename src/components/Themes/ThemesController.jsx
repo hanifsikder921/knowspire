@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { FaMoon, FaSun } from 'react-icons/fa';
+import { FaMoon } from 'react-icons/fa';
+import { IoSunnyOutline } from "react-icons/io5";
 
 const ThemesController = () => {
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
@@ -19,7 +20,7 @@ const ThemesController = () => {
       className=" top-4 right-4 z-50 text-white text-xl p-2 bg-black/30 rounded-full hover:scale-110 duration-300"
       aria-label="Toggle Theme"
     >
-      {theme === 'dark' ? <FaSun /> : <FaMoon />}
+      {theme === 'dark' ? <IoSunnyOutline /> : <FaMoon />}
     </button>
   );
 };

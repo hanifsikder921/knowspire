@@ -36,7 +36,7 @@ const ArticleCard = ({ article }) => {
 
                 <Link to={`/details/${_id}`}>
                     <button className='btn btn-primary my-2'>Read More</button>
-                </Link>
+                </Link> 
 
                 {/* Author Section */}
                 <div className="flex items-center justify-between mt-auto pt-3">
