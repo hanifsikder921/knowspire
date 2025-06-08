@@ -1,6 +1,5 @@
 import { Link } from 'react-router';
 
-
 const ArticleCard = ({ article }) => {
     const {
         _id,
@@ -9,11 +8,8 @@ const ArticleCard = ({ article }) => {
         date,
         thumbnail,
         category,
-        authorAvatar // Optional: যদি প্রোফাইল পিকচার থাকে
+        authorAvatar 
     } = article;
-
-
-  
 
     return (
         <div className="rounded-2xl shadow hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col shadow-amber-300 bg-[#0000004f]">
@@ -41,7 +37,6 @@ const ArticleCard = ({ article }) => {
                 <Link to={`/details/${_id}`}>
                     <button className='btn btn-primary my-2'>Read More</button>
                 </Link>
-
 
                 {/* Author Section */}
                 <div className="flex items-center justify-between mt-auto pt-3">

@@ -167,7 +167,8 @@ const Details = () => {
                     </div>
 
                     <div className='p-2 space-y-2'>
-                        <h2 className='text-3xl font-semibold'>{title}</h2>
+                        <h2 className='text-3xl font-semibold'>{title} </h2>
+                        <button className='btn btn-xs '>{category}</button>
                         <p className='text-base'>{content}</p>
 
                         {/* Like Button  and comment*/}

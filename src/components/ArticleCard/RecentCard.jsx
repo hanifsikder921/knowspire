@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router';
 
 const AllArticles = () => {
     const [articles, setArticles] = useState([]);
@@ -26,12 +27,26 @@ const AllArticles = () => {
         <div className="w-11/12 mx-auto my-2 space-y-6">
             <h3 className='text-2xl font-bold mb-4'>Recent Articles</h3>
             {
-                articles.slice(-4).reverse().map((article) => (
-                    <div key={article._id} className="p-4 border rounded-md shadow hover:shadow-lg transition">
-                        <h2 className="text-xl font-semibold">{article.title}</h2>
-                        <p className="text-sm text-gray-500">By {article.author}</p>
-                        <p className="mt-2 text-gray-700">{article.content.slice(0, 100)}...</p>
+                articles.slice(-3).reverse().map((article) => (
+                    <div key={article._id} className="shadow shadow-amber-100 transition group overflow-hidden rounded-lg">
+
+                        <div className='p-2'>
+                            <div className="overflow-hidden rounded-md">
+                                <img
+                                    src={article.thumbnail}
+                                    alt="No Image Found"
+                                    className="transition-transform duration-300 group-hover:scale-105 w-full h-48 object-cover"
+                                />
+                            </div>
+                            <h2 className='text-xl font-semibold mt-2'>{article.title}</h2>
+                            <p>{article.content.slice(0, 50)}..</p>
+                            <Link to={`/details/${article._id}`}>
+                                <button className='btn btn-sm my-2'>See More</button>
+                            </Link>
+                        </div>
+
                     </div>
+
                 ))
             }
         </div>
