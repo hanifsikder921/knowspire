@@ -2,6 +2,8 @@ import React, { Suspense, useState } from 'react';
 import { useLoaderData } from 'react-router';
 import ArticleCard from '../../components/ArticleCard/ArticleCard';
 
+
+
 const AllArticles = () => {
     const data = useLoaderData();
     const [articles, setArticles] = useState(data?.data || []);
@@ -103,9 +105,9 @@ const AllArticles = () => {
                         No articles found {filterCategory && `for "${filterCategory}"`}
                     </p>
                 ) : (
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
                         {filteredArticles.map(article => (
-                            <ArticleCard key={article._id} article={article} />
+                            < ArticleCard key={article._id} article={article} />
                         ))}
                     </div>
                 )}

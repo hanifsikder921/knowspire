@@ -1,5 +1,6 @@
 import { Link } from 'react-router';
 
+
 const ArticleCard = ({ article }) => {
     const {
         _id,
@@ -9,54 +10,67 @@ const ArticleCard = ({ article }) => {
         date,
         thumbnail,
         category,
-        authorAvatar 
+        authorAvatar
     } = article;
 
     return (
-        <div className="rounded-2xl shadow hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col shadow-amber-300 bg-[#0000004f]">
-            {/* Thumbnail with Category Badge */}
-            <div className="relative">
-                <img
-                    src={thumbnail}
-                    alt={title}
-                    className="h-48 w-full object-cover"
-                />
-                {category && (
-                    <span className="absolute top-3 left-3 bg-blue-500 text-white text-xs font-medium px-3 py-1 rounded-full shadow">
-                        {category}
-                    </span>
-                )}
-            </div>
+        <div>
+            <div className="mx-auto">
 
-            {/* Content */}
-            <div className="p-5 flex flex-col justify-between flex-grow">
-                <h3 className="text-xl font-semibold  mb-2 line-clamp-2 text-white">{title}</h3>
-                <p className="text-sm  mb-5 line-clamp-2 text-white">
-                    {content}
-                </p>
+                <div className="grid gap-6">
 
-                <Link to={`/details/${_id}`}>
-                    <button className='btn btn-primary my-2'>Read More</button>
-                </Link> 
+                    <div className="group relative block rounded-xl focus:outline-hidden hover:shadow-md hover:shadow-amber-300 cursor-pointer duration-300" >
+                        <div className="shrink-0 relative rounded-xl overflow-hidden w-full h-87.5 before:absolute before:inset-x-0 before:z-1 before:size-full before:bg-linear-to-t before:from-gray-900/80">
+                            <img className="size-full absolute top-0 start-0 object-cover transition-transform duration-500 group-hover:scale-105" src={thumbnail} alt="Blog Image" />
+                        </div>
 
-                {/* Author Section */}
-                <div className="flex items-center justify-between mt-auto pt-3">
-                    <div className="flex items-center space-x-3 mt-2">
-                        <img
-                            src={authorAvatar || 'https://i.ibb.co/4pDNDk1/avatar.png'}
-                            alt={authorName}
-                            className="w-8 h-8 rounded-full object-cover"
-                        />
-                        <div className="text-sm  font-medium text-white">
-                            {authorName}
+
+                        <div className="absolute top-0 inset-x-0 z-10">
+                            <div className="p-4 flex flex-col h-full sm:p-6">
+                                {/* Avatar */}
+                                <div className="flex items-center">
+                                    <div className="shrink-0">
+                                        <img className="size-11 border-2 border-white rounded-full" src={authorAvatar} alt="Avatar" />
+                                    </div>
+                                    <div className="ms-2.5 sm:ms-4">
+                                        <h4 className="font-semibold text-white bg-gray-500 px-2 rounded-2xl">
+                                            {authorName}
+                                        </h4>
+                                        <p className="text-xs text-white/80 px-2">
+                                            {new Date(date).toLocaleDateString('en-GB', {
+                                                day: 'numeric',
+                                                month: 'long',
+                                                year: 'numeric'
+                                            })}
+                                        </p>
+                                    </div>
+                                </div>
+                                {/* End Avatar */}
+                            </div>
+                        </div>
+
+                        <div className="absolute bottom-0 inset-x-0 z-10">
+                            <div className="flex flex-col h-full p-4 sm:p-6">
+                                <h3 className="text-lg sm:text-3xl font-semibold text-white group-hover:text-white/80 group-focus:text-white/80 line-clamp-2">
+                                    {title}
+                                </h3>
+                                <p className="mt-2 text-white/80">
+                                    {content.slice(0, 80)}...
+                                </p>
+                                <Link to={`/details/${_id}`} className='btn flex w-fit my-1'>Read More</Link>
+                            </div>
+                        </div>
+                        <div>
+                            <p className='bg-gradient-to-r from-[#2b2bff] to-[#ff00cc] text-white absolute top-0 z-10 right-0 px-2 py-1 rounded-bl-xl text-sm'>{category}</p>
                         </div>
                     </div>
-                    <div className="text-xs text-white  mt-2">
-                        {new Date(date).toLocaleDateString()}
-                    </div>
+
                 </div>
+
             </div>
+
         </div>
+
     );
 };
 
