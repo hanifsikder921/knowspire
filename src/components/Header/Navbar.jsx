@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import ThemesController from '../Themes/ThemesController';
 import { useEffect } from 'react';
 import profileicon from "../../assets/profile.png"
+import Loading from '../Loading/Loading';
 
 
 const Navbar = () => {
@@ -49,7 +50,7 @@ const Navbar = () => {
                 { path: "/", label: "Home" },
                 { path: "/allArticles", label: "All Articles" },
                 { path: "/about", label: "About" },
-                { path: "/support", label: "Support" },
+                { path: "/support", label: "Contact Us" },
             ].map(({ path, label }) => (
                 <NavLink
                     key={path}
@@ -79,7 +80,7 @@ const Navbar = () => {
     );
 
     return loading ? (
-        <p>Loading...</p>
+        <Loading/>
     ) : (
         <div className="navbar w-11/12 mx-auto">
             <div className="navbar-start">

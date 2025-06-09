@@ -28,7 +28,7 @@ const LatestArticles = () => {
             <motion.div
                 className="divider divider-primary w-11/12 md:text-3xl font-semibold text-center mb-6 text-white md:w-6/12 mx-auto md:mt-25"
                 animate={{
-                    color: ["#ffffff", "#60a5fa", "#facc15", "#f472b6", "#ffffff"]
+                    color: ["#8e44ad", "#60a5fa", "#facc15", "#f472b6", "#8e44ad"]
                 }}
                 transition={{
                     duration: 6,

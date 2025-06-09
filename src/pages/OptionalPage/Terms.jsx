@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Support = () => {
+const Terms = () => {
     return (
         <div>
-            support Page
+            terms and condition
         </div>
     );
 };
 
-export default Support;
+export default Terms;

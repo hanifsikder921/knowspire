@@ -4,9 +4,7 @@ import Home from "../pages/Home/Home";
 import AuthencationLayout from './../layouts/AuthencationLayout';
 import Login from './../pages/Login/Login';
 import Register from './../pages/Register/Register';
-import About from "../pages/About/About";
 import AllArticlex from "../pages/AllArticles/AllArticlex";
-import Support from "../pages/Support/Support";
 import PostArticles from "../pages/PostArticles/PostArticles";
 import axios from "axios";
 import PrivateRoute from "../provider/PrivateRoute";
@@ -17,6 +15,10 @@ import UniversalCategory from "../pages/CategoryPage/UniversalCategory";
 import ContributorPostLayout from "../layouts/ContributorPostLayout";
 import ContributorPost from "../pages/TopContributor/ContributorPost";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import Terms from "../pages/OptionalPage/Terms";
+import ContactUs from "../pages/OptionalPage/ContactUs";
+import AboutUs from "../pages/OptionalPage/AboutUs";
+import PublicRoute from "../provider/PublicRoute";
 
 
 
@@ -33,15 +35,29 @@ const router = createBrowserRouter([
             },
             {
                 path: '/about',
-                Component: About
+                Component: AboutUs
 
             },
             {
                 path: '/allArticles',
-                loader: () => axios(`${import.meta.env.VITE_API_URL}/articles`),
-                Component: AllArticlex
+                loader: async () => {
+                    try {
+                        const res = await axios(`${import.meta.env.VITE_API_URL}/articles`);
+                        return res;
+                    } catch (err) {
+                        throw new Response("Failed to load articles", {
+                            status: 500,
+                            statusText: "Internal Server Error",
+                        });
+                    }
+                },
 
+                Component: AllArticlex,
+                errorElement: <ErrorPage/>
             },
+
+
+
             {
                 path: '/postArticles',
                 Component: () => <PrivateRoute><PostArticles /></PrivateRoute>
@@ -51,7 +67,7 @@ const router = createBrowserRouter([
 
             {
                 path: '/support',
-                Component: Support
+                Component: ContactUs
 
             },
             {
@@ -75,11 +91,15 @@ const router = createBrowserRouter([
                         return res.json();
                     } catch (err) {
                         console.error(err.message);
-                        return null;
+                        return { message: "Server Disconnected" };
                     }
                 },
                 Component: Details
             },
+            {
+                path: "terms",
+                component: Terms
+            }
 
 
 
@@ -92,11 +112,11 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/auth/login",
-                Component: Login
+                Component: () => <PublicRoute><Login /></PublicRoute>
             },
             {
                 path: "/auth/register",
-                Component: Register
+                Component: () => <PublicRoute><Register /></PublicRoute>
             }
         ]
     },
@@ -109,7 +129,7 @@ const router = createBrowserRouter([
                 path: '/cat/:category',
                 loader: () => axios(`${import.meta.env.VITE_API_URL}/articles`),
                 Component: UniversalCategory
-            }    
+            }
         ]
     },
     {
@@ -120,12 +140,12 @@ const router = createBrowserRouter([
                 path: '/contri/:authorEmail',
                 loader: () => axios(`${import.meta.env.VITE_API_URL}/articles`),
                 Component: ContributorPost
-            }    
+            }
         ]
     },
     {
-        path:'*',
-        Component:ErrorPage
+        path: '*',
+        Component: ErrorPage
     }
 
 
