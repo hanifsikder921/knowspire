@@ -34,13 +34,13 @@ const AllArticles = () => {
     return (
         <div>
             <Suspense fallback={<p>Loading...</p>}>
-                <div className='my-2 flex flex-col md:flex-row items-center justify-between'>
+                <div className='my-2 flex flex-col md:flex-row items-center justify-between md:w-full w-11/12 mx-auto'>
                     <div className='flex flex-col md:flex-row items-center'>
                         <div className='text-xl font-semibold my-2'>
                             Filter Articles :
                         </div>
 
-                        <div className="flex gap-2 items-center mx-2">
+                        <div className="flex gap-2 flex-wrap items-center mx-2">
                             <button
                                 onClick={() => handleFilterChange('Technology')}
                                 className={`btn ${filterCategory === 'Technology' ? 'bg-blue-500 text-white' : ''}`}
@@ -93,7 +93,7 @@ const AllArticles = () => {
                     </div>
                 </div>
 
-                <div className='my-2'>
+                <div className='my-2 mx-2 md:mx-0'>
                     <p className='font-semibold'>
                         Total <span className='font-bold text-blue-500'>{filteredArticles.length}</span> Articles Found
                         {filterCategory && ` in "${filterCategory}" category`}
@@ -105,7 +105,7 @@ const AllArticles = () => {
                         No articles found {filterCategory && `for "${filterCategory}"`}
                     </p>
                 ) : (
-                    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mx-2 md:mx-0 '>
                         {filteredArticles.map(article => (
                             < ArticleCard key={article._id} article={article} />
                         ))}

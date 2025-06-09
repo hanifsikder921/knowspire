@@ -1,25 +1,31 @@
 import React from 'react';
 import { Outlet } from 'react-router';
 import Navbar from '../components/Header/Navbar';
+import Footer from '../components/Footer/Footer';
 
 const CategoryLayout = () => {
     return (
-       <div className="min-h-screen theme-gradient">
+        <div className="min-h-screen flex flex-col">
 
-            <header className='border-b border-gray-300 bg-gray-500'>
+            <header className='border-b border-gray-300'>
                 <Navbar />
             </header>
 
-            <div className='md:w-11/12 mx-auto my-5'>
-                <main className="min-h-screen bg-opacity-80">
-                    <section>
-                        <Outlet />
-                    </section>
-                </main>
-            </div>
+
+            <main className=" w-11/12 mx-auto flex-grow md:my-8 my-2">
+                <section>
+                    <Outlet />
+                </section>
+            </main>
+
+
+            <footer>
+                <Footer />
+            </footer>
 
         </div>
     );
+
 };
 
 export default CategoryLayout;

@@ -15,7 +15,7 @@ const ArticleCard = ({ article }) => {
 
     return (
         <div>
-            <div className="mx-auto">
+            <div className=" w-full mx-auto">
 
                 <div className="grid gap-6">
 
@@ -57,7 +57,7 @@ const ArticleCard = ({ article }) => {
                                 <p className="mt-2 text-white/80">
                                     {content.slice(0, 80)}...
                                 </p>
-                                <Link to={`/details/${_id}`} className='btn flex w-fit my-1'>Read More</Link>
+                                <Link to={`/details/${_id}`} className='btn btn-primary flex w-fit my-1'>Read More</Link>
                             </div>
                         </div>
                         <div>

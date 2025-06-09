@@ -11,6 +11,7 @@ import health from "../../assets/health.jpeg";
 import business from "../../assets/businesss.jpeg";
 import education from "../../assets/education.jpeg";
 import technology from "../../assets/technology.jpeg";
+import allPost from "../../assets/allArticle.png";
 
 // Custom Arrow Components
 const NextArrow = ({ onClick }) => (
@@ -45,6 +46,13 @@ const BannerSlider = () => {
     };
 
     const slides = [
+        {
+            img: allPost,
+            title: "Explore All Contributors Articles",
+            desc: "Discover All Artiicel in The World.",
+            category: "All Article",
+            route: "/allArticles"
+        },
         {
             img: technology,
             title: "Explore Technology Articles",
