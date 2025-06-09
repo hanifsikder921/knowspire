@@ -15,10 +15,10 @@ import UniversalCategory from "../pages/CategoryPage/UniversalCategory";
 import ContributorPostLayout from "../layouts/ContributorPostLayout";
 import ContributorPost from "../pages/TopContributor/ContributorPost";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
-import Terms from "../pages/OptionalPage/Terms";
 import ContactUs from "../pages/OptionalPage/ContactUs";
 import AboutUs from "../pages/OptionalPage/AboutUs";
 import PublicRoute from "../provider/PublicRoute";
+import TermsAndCondition from "../pages/OptionalPage/TermsAndCondition";
 
 
 
@@ -39,6 +39,11 @@ const router = createBrowserRouter([
 
             },
             {
+                path: "/condition",
+                Component:TermsAndCondition
+            },
+
+            {
                 path: '/allArticles',
                 loader: async () => {
                     try {
@@ -46,14 +51,14 @@ const router = createBrowserRouter([
                         return res;
                     } catch (err) {
                         throw new Response("Failed to load articles", {
-                            status: 500,
+                            status: err,
                             statusText: "Internal Server Error",
                         });
                     }
                 },
 
                 Component: AllArticlex,
-                errorElement: <ErrorPage/>
+                errorElement: <ErrorPage />
             },
 
 
@@ -71,7 +76,7 @@ const router = createBrowserRouter([
 
             },
             {
-                path: 'my-added-article/:email',
+                path: '/my-added-article/:email',
                 loader: ({ params }) => {
                     const token = localStorage.getItem('token');
                     return axios(`${import.meta.env.VITE_API_URL}/my-articles/${params.email}`, {
@@ -95,10 +100,6 @@ const router = createBrowserRouter([
                     }
                 },
                 Component: Details
-            },
-            {
-                path: "terms",
-                component: Terms
             }
 
 

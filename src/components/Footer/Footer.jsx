@@ -26,9 +26,9 @@ const Footer = () => {
 
                     <div className="mt-3 flex justify-center items-center">
                         <div className='flex md:flex-row flex-col md:gap-8 gap-3'>
-                            <Link className='hover:underline duration-300 hover:font-semibold'>About us</Link>
-                            <Link className='hover:underline duration-300 hover:font-semibold'>Contact us</Link>
-                            <Link className='hover:underline duration-300 hover:font-semibold'>Terms & Conditions</Link>
+                            <Link to='/about' className='hover:underline duration-300 hover:font-semibold'>About us</Link>
+                            <Link to='/support' className='hover:underline duration-300 hover:font-semibold'>Contact us</Link>
+                            <Link to='/condition' className='hover:underline duration-300 hover:font-semibold'>Terms & Conditions</Link>
                         </div>
                     </div>
 
