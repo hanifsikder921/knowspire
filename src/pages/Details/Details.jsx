@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router';
+import { Link, useLoaderData } from 'react-router';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../provider/AuthProvider';
@@ -10,6 +10,7 @@ import { GrFavorite } from "react-icons/gr";
 const Details = () => {
     const article = useLoaderData();
     const { user } = useContext(AuthContext)
+    const [categories, setCategories] = useState([]);
     const [liked, setLiked] = useState(false);
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
@@ -67,6 +68,23 @@ const Details = () => {
         }
     };
 
+    useEffect(() => {
+        const fetchCategoriesFromArticles = async () => {
+            try {
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/articles`);
+                const articles = await res.json();
+
+                // Extract unique categories from articles
+                const uniqueCategories = [...new Set(articles.map(article => article.category))];
+                setCategories(uniqueCategories);
+            } catch (err) {
+                console.error("Failed to fetch categories from articles", err);
+            }
+        };
+
+        fetchCategoriesFromArticles();
+    }, []);
+
     const handleCommentSubmit = async (e) => {
         e.preventDefault();
         if (!newComment.trim()) return;
@@ -74,7 +92,7 @@ const Details = () => {
         try {
             const commentData = {
                 user: user.displayName,
-                userId:user.uid,
+                userId: user.uid,
                 userEmail: user.email,
                 userPhoto: user.photoURL,
                 text: newComment,
@@ -182,10 +200,10 @@ const Details = () => {
                         </div>
                         {/* tag get  */}
                         <div>
-                            
+
                             <h2 className='md:my-4 text-2xl font-semibold'>Tags</h2>
                             {
-                                tags.map(tag=> <button className='btn  btn-dash mr-2'>{tag}</button>)
+                                tags.map(tag => <button className='btn  btn-dash mr-2'>{tag}</button>)
                             }
 
                         </div>
@@ -277,8 +295,26 @@ const Details = () => {
             </section>
 
             <section className='shadow shadow-amber-100 p-4 rounded-2xl bg-[#1574c24b]'>
-                <RecentCard></RecentCard>
+                <div>
+                    <h3 className="text-2xl font-semibold mb-2">Categories</h3>
+                    <div className="flex flex-col w-full gap-2">
+                        {categories.map((category, index) => (
+                            <Link key={index} to={`/cat/${encodeURIComponent(category)}`}>
+
+                                <button className="px-4 py-1 btn  rounded-md transition w-full">
+                                    {category}
+                                </button>
+
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+                <div className='md:mt-8'>
+                    <RecentCard />
+                </div>
             </section>
+
+
         </div>
     );
 };

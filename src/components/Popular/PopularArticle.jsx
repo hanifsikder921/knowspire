@@ -5,6 +5,7 @@ import { TbChartBarPopular } from "react-icons/tb";
 const PopularArticle = () => {
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(true);
+  
 
     useEffect(() => {
         const fetchArticles = async () => {
@@ -24,6 +25,23 @@ const PopularArticle = () => {
 
         fetchArticles();
     }, []);
+
+    useEffect(() => {
+    const fetchCategoriesFromArticles = async () => {
+        try {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/articles`);
+            const articles = await res.json();
+
+            // Extract unique categories from articles
+            const uniqueCategories = [...new Set(articles.map(article => article.category))];
+            setCategories(uniqueCategories);
+        } catch (err) {
+            console.error("Failed to fetch categories from articles", err);
+        }
+    };
+
+    fetchCategoriesFromArticles();
+}, []);
 
     if (loading) return <p className="text-center mt-10">Loading articles...</p>;
 

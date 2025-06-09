@@ -4,14 +4,14 @@ import Navbar from '../components/Header/Navbar';
 
 const MainLayout = () => {
     return (
-        <div className="theme-gradient">
+        <div >
 
-            <header className='border-b border-gray-300 bg-gray-500'>
+            <header className='border-b border-gray-300'>
                 <Navbar />
             </header>
 
-            <div className='md:w-11/12 mx-auto my-5'>
-                <main className="min-h-screen bg-opacity-80">
+            <div className='md:w-11/12 mx-auto'>
+                <main className=" mt-8">
                     <section>
                         <Outlet />
                     </section>

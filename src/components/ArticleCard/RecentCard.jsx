@@ -24,7 +24,7 @@ const AllArticles = () => {
     if (loading) return <p className="text-center mt-10">Loading articles...</p>;
 
     return (
-        <div className="w-11/12 mx-auto my-2 space-y-6">
+        <div className=" my-2 space-y-6">
             <h3 className='text-2xl font-bold mb-4'>Recent Articles</h3>
             {
                 articles.slice(-3).reverse().map((article) => (

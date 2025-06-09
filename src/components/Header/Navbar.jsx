@@ -4,6 +4,7 @@ import { AuthContext } from '../../provider/AuthProvider';
 import Swal from 'sweetalert2';
 import ThemesController from '../Themes/ThemesController';
 import { useEffect } from 'react';
+import profileicon from "../../assets/profile.png"
 
 
 const Navbar = () => {
@@ -56,7 +57,7 @@ const Navbar = () => {
                     className={({ isActive }) =>
                         `font-semibold transition-colors duration-300 text-base-content relative z-10 ${isActive
                             ? 'px-4 py-2 rounded-md bg-gradient-to-r from-[#2b2bff] to-[#ff00cc] text-white'
-                            : 'text-white hover:text-blue-500'
+                            : ' hover:text-blue-500'
                         }`
                     }
                 >
