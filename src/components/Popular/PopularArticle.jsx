@@ -12,7 +12,7 @@ const PopularArticle = () => {
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/articles`);
                 const data = await response.json();
                 const shuffled = [...data].sort(() => 0.5 - Math.random());
-                const selected = shuffled.slice(0, 4);
+                const selected = shuffled.slice(0, 6);
 
                 setArticles(selected);
             } catch (error) {

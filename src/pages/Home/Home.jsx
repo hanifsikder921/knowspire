@@ -3,6 +3,7 @@ import BannerSlider from '../../components/Slider/BannerSlider';
 import PopularArticle from '../../components/Popular/PopularArticle';
 import BrowsCategory from '../../components/ArticleCategory/BrowsCategory';
 import TopContributors from '../../components/TopContributors/TopContrubutors';
+import LatestArticles from '../../components/LatestArticles/LatestArticles';
 
 const Home = () => {
     return (
@@ -12,6 +13,7 @@ const Home = () => {
             <PopularArticle/>
             <BrowsCategory/>
             <TopContributors/>
+            <LatestArticles/>
 
         </div>
     );
