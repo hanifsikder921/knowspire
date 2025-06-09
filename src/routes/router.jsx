@@ -14,6 +14,8 @@ import MyArticles from "../pages/MyArticles/MyArticles"
 import Details from "../pages/Details/Details";
 import CategoryLayout from "../layouts/CategoryLayout";
 import UniversalCategory from "../pages/CategoryPage/UniversalCategory";
+import ContributorPostLayout from "../layouts/ContributorPostLayout";
+import ContributorPost from "../pages/TopContributor/ContributorPost";
 
 
 
@@ -80,15 +82,6 @@ const router = createBrowserRouter([
 
 
 
-
-
-
-
-
-
-
-
-
         ]
     },
 
@@ -106,6 +99,7 @@ const router = createBrowserRouter([
             }
         ]
     },
+
     {
         path: '/cat',
         Component: CategoryLayout,
@@ -116,7 +110,18 @@ const router = createBrowserRouter([
                 Component: UniversalCategory
             }    
         ]
-    }
+    },
+    {
+        path: '/contri',
+        Component: ContributorPostLayout,
+        children: [
+            {
+                path: '/contri/:authorEmail',
+                loader: () => axios(`${import.meta.env.VITE_API_URL}/articles`),
+                Component: ContributorPost
+            }    
+        ]
+    },
 
 
 

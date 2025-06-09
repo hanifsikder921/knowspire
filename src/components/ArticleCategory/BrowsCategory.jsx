@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { motion } from 'framer-motion';
 
 const BrowsCategory = () => {
     const categories = [
@@ -28,7 +29,19 @@ const BrowsCategory = () => {
     return (
         <div >
 
-            <div className="divider divider-primary w-11/12 md:text-3xl font-semibold text-center mb-6  text-white md:w-6/12 mx-auto">Browse Categories</div>
+            <motion.div
+                className="divider divider-primary w-11/12 md:text-3xl font-semibold text-center mb-6 text-white md:w-6/12 mx-auto"
+                animate={{
+                    color: ["#ffffff", "#60a5fa", "#facc15", "#f472b6", "#ffffff"]
+                }}
+                transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                }}
+            >
+                Browse Categories
+            </motion.div>
             <div className='shadow shadow-amber-200 my-8  rounded-lg md:p-25 bg-[#00000020] w-11/12 md:w-full mx-auto p-2 '>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">

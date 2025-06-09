@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router';
 
 const TopContributors = () => {
     const [contributors, setContributors] = useState([]);
@@ -10,7 +12,6 @@ const TopContributors = () => {
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/articles`);
                 const data = await response.json();
 
-                // extract unique contributors
                 const uniqueContributors = [];
                 const seenEmails = new Set();
 
@@ -22,11 +23,10 @@ const TopContributors = () => {
                     }
                 });
 
-                // shuffle and pick 6
                 const shuffled = uniqueContributors.sort(() => 0.5 - Math.random());
-                const top6 = shuffled.slice(0, 4);
+                const top4 = shuffled.slice(0, 4);
 
-                setContributors(top6);
+                setContributors(top4);
             } catch (error) {
                 console.error("Error fetching contributors:", error);
             } finally {
@@ -41,13 +41,34 @@ const TopContributors = () => {
 
     return (
         <div className="my-10">
-            <h3 className="text-3xl font-bold text-center mb-6">Top Contributors</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4  gap-6">
-                {contributors.map((contributor) => {
-                    console.log(contributor.authorAvatar);
+            <motion.div
+                className="divider divider-primary w-11/12 md:text-3xl font-semibold text-center mb-6 text-white md:w-6/12 mx-auto md:mt-25"
+                animate={{
+                    color: ["#ffffff", "#60a5fa", "#facc15", "#f472b6", "#ffffff"]
+                }}
+                transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                }}
+            >
+                Top Contributors
+            </motion.div>
 
-                    return (
-                        <div key={contributor.authorEmail} className="bg-white shadow-md p-4 rounded-lg text-center">
+            <section className='md:p-18 p-2 shadow shadow-emerald-300 rounded-xl'>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                    {contributors.map((contributor, index) => (
+                        <motion.div
+                            key={contributor.authorEmail}
+                            className="bg-white shadow-md p-4 rounded-lg text-center"
+                            animate={{ y: [0, -10, 10, 0] }}
+                            transition={{
+                                duration: 4,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                                delay: index * 0.5,
+                            }}
+                        >
                             <img
                                 src={contributor.authorAvatar}
                                 alt={contributor.authorName}
@@ -55,10 +76,16 @@ const TopContributors = () => {
                             />
                             <h4 className="text-lg text-gray-700 font-semibold">{contributor.authorName}</h4>
                             <p className="text-sm text-gray-500">{contributor.authorEmail}</p>
-                        </div>
-                    );
-                })}
-            </div>
+                            <Link 
+                                to={`/contri/${encodeURIComponent(contributor.authorEmail)}`}
+                                className="btn btn-primary my-2"
+                            >
+                                View Articles
+                            </Link>
+                        </motion.div>
+                    ))}
+                </div>
+            </section>
         </div>
     );
 };

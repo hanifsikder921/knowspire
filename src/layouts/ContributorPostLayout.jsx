@@ -1,0 +1,25 @@
+import React from 'react';
+import Navbar from '../components/Header/Navbar';
+import { Outlet } from 'react-router';
+
+const ContributorPostLayout = () => {
+    return (
+        <div className="min-h-screen theme-gradient">
+
+            <header className='border-b border-gray-300 bg-gray-500'>
+                <Navbar />
+            </header>
+
+            <div className='md:w-11/12 mx-auto my-5'>
+                <main className="min-h-screen bg-opacity-80">
+                    <section>
+                        <Outlet />
+                    </section>
+                </main>
+            </div>
+
+        </div>
+    );
+};
+
+export default ContributorPostLayout;
