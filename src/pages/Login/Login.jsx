@@ -61,11 +61,11 @@ const Login = () => {
 
     return (
         <div className="flex items-center justify-center px-4 py-10">
-            <div className="mt-7 bg-white border border-gray-200 rounded-xl shadow-2xs w-full max-w-md">
+            <div className="mt-7 rounded-xl shadow shadow-gray-200 w-full max-w-md">
                 <div className="p-4 sm:p-7">
                     <div className="text-center">
-                        <h1 className="block text-2xl font-bold text-gray-800">Sign in</h1>
-                        <p className="mt-2 text-sm text-gray-600">
+                        <h1 className="block text-2xl font-bold ">Sign in</h1>
+                        <p className="mt-2 text-sm ">
                             Don't have an account yet?
                             <Link className="text-blue-600 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium ml-1" to="/auth/register">
                                 Sign up here
@@ -95,13 +95,13 @@ const Login = () => {
                             <div className="grid gap-y-4">
                                 {/* Email Input */}
                                 <div>
-                                    <label htmlFor="email" className="block text-sm mb-2 text-gray-600">Email address</label>
+                                    <label htmlFor="email" className="block text-sm mb-2 ">Email address</label>
                                     <div className="relative">
                                         <input 
                                             type="email" 
                                             id="email" 
                                             name="email" 
-                                            className="py-2.5 sm:py-3 px-4 block text-gray-600 w-full border border-gray-300 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" 
+                                            className="py-2.5 sm:py-3 px-4 block w-full border border-gray-300 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" 
                                             required 
                                             aria-describedby="email-error" 
                                         />
@@ -110,7 +110,7 @@ const Login = () => {
 
                                 {/* Password Input */}
                                 <div>
-                                    <div className="flex flex-wrap justify-between items-center gap-2 text-gray-600">
+                                    <div className="flex flex-wrap justify-between items-center gap-2 ">
                                         <label htmlFor="password" className="block text-sm mb-2">Password</label>
                                         <button 
                                             type="button"
@@ -125,14 +125,14 @@ const Login = () => {
                                             type={showPassword ? "text" : "password"} 
                                             id="password" 
                                             name="password" 
-                                            className="py-2.5 text-gray-600 sm:py-3 px-4 block w-full border border-gray-300  rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500  disabled:pointer-events-none" 
+                                            className="py-2.5  sm:py-3 px-4 block w-full border border-gray-300  rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500  disabled:pointer-events-none" 
                                             required 
                                             aria-describedby="password-error" 
                                         />
                                         <button 
                                             type="button"
                                             onClick={() => setShowPassword(!showPassword)}
-                                            className="absolute inset-y-0 end-0 pe-3 flex items-center text-gray-500"
+                                            className="absolute inset-y-0 end-0 pe-3 flex items-center "
                                         >
                                             {showPassword ? <IoIosEye size={20} /> : <IoIosEyeOff size={20} />}
                                         </button>
@@ -140,7 +140,7 @@ const Login = () => {
                                 </div>
 
                                 {/* Remember Me Checkbox */}
-                                <div className="flex items-center text-gray-600">
+                                <div className="flex items-center ">
                                     <div className="flex">
                                         <input id="remember-me" name="remember-me" type="checkbox" className="shrink-0 mt-0.5 border-gray-200 rounded-sm text-blue-600 focus:ring-blue-500" />
                                     </div>

@@ -16,6 +16,7 @@ import CategoryLayout from "../layouts/CategoryLayout";
 import UniversalCategory from "../pages/CategoryPage/UniversalCategory";
 import ContributorPostLayout from "../layouts/ContributorPostLayout";
 import ContributorPost from "../pages/TopContributor/ContributorPost";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 
 
@@ -122,6 +123,10 @@ const router = createBrowserRouter([
             }    
         ]
     },
+    {
+        path:'*',
+        Component:ErrorPage
+    }
 
 
 

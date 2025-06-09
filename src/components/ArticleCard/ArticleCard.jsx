@@ -4,6 +4,7 @@ const ArticleCard = ({ article }) => {
     const {
         _id,
         title,
+        content,
         authorName,
         date,
         thumbnail,
@@ -31,7 +32,7 @@ const ArticleCard = ({ article }) => {
             <div className="p-5 flex flex-col justify-between flex-grow">
                 <h3 className="text-xl font-semibold  mb-2 line-clamp-2 text-white">{title}</h3>
                 <p className="text-sm  mb-5 line-clamp-2 text-white">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis...
+                    {content}
                 </p>
 
                 <Link to={`/details/${_id}`}>

@@ -94,7 +94,7 @@ const BannerSlider = () => {
                                         <span className="bg-blue-500 text-white text-xs font-medium px-3 py-1 rounded-full shadow mb-2 inline-block">
                                             {slide.category}
                                         </span>
-                                        <h2 className="text-3xl md:text-5xl font-bold mb-2 md:mb-4 ">
+                                        <h2 className="text-2xl md:text-5xl font-bold mb-2 md:mb-4 ">
                                             <Typewriter
                                                 options={{
                                                     strings: [`${slide.title}`],

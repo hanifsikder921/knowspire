@@ -82,11 +82,11 @@ const Register = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center p-4">
-            <div className="mt-7 bg-white border border-gray-200 rounded-xl shadow-2xs w-full max-w-md">
+            <div className="mt-7   shadow shadow-gray-200 rounded-xl w-full max-w-md">
                 <div className="p-4 sm:p-7">
                     <div className="text-center">
-                        <h1 className="block text-2xl font-bold text-gray-800">Sign up</h1>
-                        <p className="mt-2 text-sm text-gray-600">
+                        <h1 className="block text-2xl font-bold ">Sign up</h1>
+                        <p className="mt-2 text-sm ">
                             Already have an account?
                             <Link to="/auth/login" className="text-blue-600 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium ml-1">
                                 Sign in here
@@ -128,13 +128,13 @@ const Register = () => {
                             <div className="grid gap-y-4">
                                 {/* Name Field */}
                                 <div>
-                                    <label htmlFor="name" className="block text-gray-600 text-sm mb-2">Full Name</label>
+                                    <label htmlFor="name" className="block  text-sm mb-2">Full Name</label>
                                     <div className="relative">
                                         <input 
                                             type="text" 
                                             id="name" 
                                             name="name" 
-                                            className="py-2.5 sm:py-3 px-4 block w-full text-gray-600 border border-gray-300 rounded-lg sm:text-sm focus:outline-none focus:border-violet-500 " 
+                                            className="py-2.5 sm:py-3 px-4 block w-full  border border-gray-300 rounded-lg sm:text-sm focus:outline-none focus:border-violet-500 " 
                                             required 
                                             disabled={loading}
                                         />
@@ -143,13 +143,13 @@ const Register = () => {
 
                                 {/* Email Field */}
                                 <div>
-                                    <label htmlFor="email" className="block  text-gray-600 text-sm mb-2">Email address</label>
+                                    <label htmlFor="email" className="block   text-sm mb-2">Email address</label>
                                     <div className="relative">
                                         <input 
                                             type="email" 
                                             id="email" 
                                             name="email" 
-                                            className="py-2.5 sm:py-3 px-4 block w-full text-gray-600 border border-gray-300 rounded-lg sm:text-sm focus:outline-none focus:border-violet-500 " 
+                                            className="py-2.5 sm:py-3 px-4 block w-full  border border-gray-300 rounded-lg sm:text-sm focus:outline-none focus:border-violet-500 " 
                                             required 
                                             disabled={loading}
                                         />
@@ -158,13 +158,13 @@ const Register = () => {
 
                                 {/* Photo URL Field */}
                                 <div>
-                                    <label htmlFor="photo" className="block  text-gray-600 text-sm mb-2">Photo URL</label>
+                                    <label htmlFor="photo" className="block  text-sm mb-2">Photo URL</label>
                                     <div className="relative">
                                         <input 
                                             type="text" 
                                             id="photo" 
                                             name="photo" 
-                                            className="py-2.5 sm:py-3 px-4 block w-full text-gray-600 border border-gray-300 rounded-lg sm:text-sm focus:outline-none focus:border-violet-500 " 
+                                            className="py-2.5 sm:py-3 px-4 block w-full  border border-gray-300 rounded-lg sm:text-sm focus:outline-none focus:border-violet-500 " 
                                             required 
                                             disabled={loading}
                                         />
@@ -173,19 +173,19 @@ const Register = () => {
 
                                 {/* Password Field */}
                                 <div>
-                                    <label htmlFor="password" className="block  text-gray-600 text-sm mb-2">Password</label>
+                                    <label htmlFor="password" className="block   text-sm mb-2">Password</label>
                                     <div className="relative">
                                         <input 
                                             type={showPassword ? "text" : "password"} 
                                             id="password" 
                                             name="password" 
-                                            className="py-2.5 sm:py-3 px-4 block w-full text-gray-600 border border-gray-300 rounded-lg sm:text-sm focus:outline-none focus:border-violet-500 " 
+                                            className="py-2.5 sm:py-3 px-4 block w-full  border border-gray-300 rounded-lg sm:text-sm focus:outline-none focus:border-violet-500 " 
                                             required 
                                             disabled={loading}
                                         />
                                         <span 
                                             onClick={() => !loading && setShowPassword(!showPassword)} 
-                                            className="absolute right-3 top-3 text-gray-400 cursor-pointer"
+                                            className="absolute right-3 top-3 cursor-pointer"
                                         >
                                             {showPassword ? <IoIosEye size={20} /> : <IoIosEyeOff size={20} />}
                                         </span>
@@ -194,19 +194,19 @@ const Register = () => {
 
                                 {/* Confirm Password Field */}
                                 <div>
-                                    <label htmlFor="confirm-password" className="block  text-gray-600 text-sm mb-2">Confirm Password</label>
+                                    <label htmlFor="confirm-password" className="block   text-sm mb-2">Confirm Password</label>
                                     <div className="relative">
                                         <input 
                                             type={showConfirmPassword ? "text" : "password"} 
                                             id="confirm-password" 
                                             name="confirm-password" 
-                                            className="py-2.5 sm:py-3 px-4 block w-full text-gray-600 border border-gray-300 rounded-lg sm:text-sm focus:outline-none focus:border-violet-500 " 
+                                            className="py-2.5 sm:py-3 px-4 block w-full  border border-gray-300 rounded-lg sm:text-sm focus:outline-none focus:border-violet-500 " 
                                             required 
                                             disabled={loading}
                                         />
                                         <span 
                                             onClick={() => !loading && setShowConfirmPassword(!showConfirmPassword)} 
-                                            className="absolute right-3 top-3 text-gray-400 cursor-pointer"
+                                            className="absolute right-3 top-3  cursor-pointer"
                                         >
                                             {showConfirmPassword ? <IoIosEye size={20} /> : <IoIosEyeOff size={20} />}
                                         </span>
@@ -220,13 +220,13 @@ const Register = () => {
                                             id="terms" 
                                             name="terms" 
                                             type="checkbox" 
-                                            className="shrink-0 mt-0.5 border-gray-200 text-gray-600 rounded-sm text-blue-600 focus:ring-blue-500" 
+                                            className="shrink-0 mt-0.5 border-gray-200 rounded-sm  focus:ring-blue-500" 
                                             required 
                                             disabled={loading}
                                         />
                                     </div>
                                     <div className="ms-3">
-                                        <label htmlFor="terms" className="text-sm  text-gray-600 ">I accept the <a className="text-blue-600 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">Terms and Conditions</a></label>
+                                        <label htmlFor="terms" className="text-sm  ">I accept the <a className="text-blue-600 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium" href="#">Terms and Conditions</a></label>
                                     </div>
                                 </div>
 
