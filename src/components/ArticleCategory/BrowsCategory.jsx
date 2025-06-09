@@ -28,7 +28,7 @@ const BrowsCategory = () => {
     return (
         <div >
 
-            <div className="divider divider-primary text-3xl font-semibold text-center mb-6  text-white w-6/12 mx-auto">Browse Categories</div>
+            <div className="divider divider-primary w-11/12 md:text-3xl font-semibold text-center mb-6  text-white md:w-6/12 mx-auto">Browse Categories</div>
             <div className='shadow shadow-amber-200 my-8  rounded-lg md:p-25 bg-[#00000020] w-11/12 md:w-full mx-auto p-2 '>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">

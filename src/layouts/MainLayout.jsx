@@ -4,7 +4,7 @@ import Navbar from '../components/Header/Navbar';
 
 const MainLayout = () => {
     return (
-        <div className="min-h-screen theme-gradient">
+        <div className="theme-gradient">
 
             <header className='border-b border-gray-300 bg-gray-500'>
                 <Navbar />

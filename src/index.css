@@ -8,9 +8,9 @@
 
 [data-theme="light"] .theme-gradient {
   background-image: linear-gradient(to top, #a4a0e6, #e0dae6);
-  /* color: #0a091d; */
+  color: #0a091d;
 }
 [data-theme="dark"] .theme-gradient {
   background-image: linear-gradient(to top,  #0a091d, #371557);
-  /* color: white; */
+  color: white;
 }
