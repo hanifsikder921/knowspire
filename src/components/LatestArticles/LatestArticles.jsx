@@ -15,7 +15,7 @@ const LatestArticles = () => {
                 const lastFour = allArticles.slice(-4).reverse(); 
                 setLatestArticles(lastFour);
             } catch (error) {
-                console.error("Error fetching latest articles:", error);
+                // console.error("Error fetching latest articles:", error);
             }
         };
 

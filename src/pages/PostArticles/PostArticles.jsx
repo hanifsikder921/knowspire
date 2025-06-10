@@ -7,7 +7,7 @@ import PageWrapper from '../../components/TransitionWrapper/PageWrapper';
 
 const PostArticles = () => {
     const { user } = useContext(AuthContext);
-    console.log(user);
+
 
     const [formData, setFormData] = useState({
         title: '',
@@ -35,7 +35,7 @@ const PostArticles = () => {
 
         try {
             const res = await axios.post(`${import.meta.env.VITE_API_URL}/add-articles`, articleData);
-            console.log(res.data);
+            
 
             if (res.data.insertedId) {
                 Swal.fire({
@@ -54,7 +54,6 @@ const PostArticles = () => {
             }
 
         } catch (error) {
-            console.error(error);
             Swal.fire({
                 icon: 'error',
                 title: 'Error',

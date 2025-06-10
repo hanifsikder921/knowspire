@@ -1,9 +1,11 @@
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router';
 import ArticleCard from '../../components/ArticleCard/ArticleCard';
 import Loading from '../../components/Loading/Loading';
 import { Helmet } from 'react-helmet-async';
 import PageWrapper from './../../components/TransitionWrapper/PageWrapper';
+import fileLoading from '../../assets/loading.json'
+import Lottie from 'lottie-react';
 
 
 
@@ -12,6 +14,22 @@ const AllArticles = () => {
     const [articles, setArticles] = useState(data?.data || []);
     const [searchTerm, setSearchTerm] = useState('');
     const [filterCategory, setFilterCategory] = useState('');
+    const [loading, setLoading] = useState(true);
+
+
+
+    useEffect(() => {
+        fetch(`${import.meta.env.VITE_API_URL}/articles`)
+            .then(res => res.json())
+            .then(data => {
+                setArticles(data);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error("Error loading posts:", error);
+                setLoading(false);
+            });
+    }, []);
 
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
@@ -34,11 +52,21 @@ const AllArticles = () => {
         return matchesCategory && matchesSearch;
     });
 
+     if (loading) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <div className='w-[100px] h-[100px]'>
+                    <Lottie animationData={fileLoading} />
+                </div>
+            </div>
+        );
+    }
+
     return (
         <PageWrapper>
             <div>
                 <Helmet title='All Article - Knowspire'></Helmet>
-                <Suspense fallback={<Loading />}>
+                
                     <div className='my-2 flex flex-col md:flex-row items-center justify-between md:w-full w-11/12 mx-auto'>
                         <div className='flex flex-col md:flex-row items-center'>
                             <div className='text-xl font-semibold my-2'>
@@ -116,7 +144,7 @@ const AllArticles = () => {
                             ))}
                         </div>
                     )}
-                </Suspense>
+               
             </div>
         </PageWrapper>
     );

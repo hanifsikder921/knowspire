@@ -72,7 +72,7 @@ const TopContributors = () => {
                             <img
                                 src={contributor.authorAvatar}
                                 alt={contributor.authorName}
-                                className="w-16 h-16 rounded-full mx-auto mb-2"
+                                className="w-16 h-16 rounded-full object-cover mx-auto mb-2"
                             />
                             <h4 className="text-lg text-gray-700 font-semibold">{contributor.authorName}</h4>
                             <p className="text-sm text-gray-500">{contributor.authorEmail}</p>

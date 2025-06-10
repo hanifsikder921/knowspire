@@ -29,7 +29,7 @@ const AllArticles = () => {
             <h3 className='text-2xl font-bold mb-4'>Recent Articles</h3>
             {
                 articles.slice(-3).reverse().map((article) => (
-                    <div key={article._id} className="shadow shadow-amber-100 transition group overflow-hidden rounded-lg">
+                    <div key={article._id} className="shadow shadow-amber-100 bg-base-100 transition group overflow-hidden rounded-lg">
 
                         <div className='p-2'>
                             <div className="overflow-hidden rounded-md">

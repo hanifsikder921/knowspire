@@ -185,11 +185,7 @@ const MyArticles = () => {
                                                 <button className="btn btn-sm btn-error" onClick={() => handleDelete(article._id)}>
                                                     <FaTrash /> Delete
                                                 </button>
-                                                <Link to={`/details/${article._id}`}>
-                                                    <button className="btn btn-sm btn-success">
-                                                        <LuEye /> View
-                                                    </button>
-                                                </Link>
+                                               
                                             </td>
                                         </tr>
                                     ))}
@@ -224,11 +220,7 @@ const MyArticles = () => {
                                         <button className="btn btn-sm btn-error" onClick={() => handleDelete(article._id)}>
                                             <FaTrash /> Delete
                                         </button>
-                                        <Link to={`/details/${article._id}`}>
-                                            <button className="btn btn-sm btn-success">
-                                                <LuEye /> View
-                                            </button>
-                                        </Link>
+                                       
                                     </div>
                                 </div>
                             ))}

@@ -48,18 +48,6 @@ const router = createBrowserRouter([
 
             {
                 path: '/allArticles',
-                loader: async () => {
-                    try {
-                        const res = await axios(`${import.meta.env.VITE_API_URL}/articles`);
-                        return res;
-                    } catch (err) {
-                        throw new Response("Failed to load articles", {
-                            status: err,
-                            statusText: "Internal Server Error",
-                        });
-                    }
-                },
-
                 Component: AllArticlex,
                 errorElement: <ErrorPage />
             },
@@ -103,8 +91,8 @@ const router = createBrowserRouter([
                         if (!res.ok) throw new Error("Failed to load post details");
                         return res.json();
                     } catch (err) {
-                        console.error(err.message);
-                        return { message: "Server Disconnected" };
+                        
+                        return { message: "Server Disconnected", error: err };
                     }
                 },
                 Component: Details,
