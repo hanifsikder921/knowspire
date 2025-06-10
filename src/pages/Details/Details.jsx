@@ -18,6 +18,7 @@ const Details = () => {
     const [newComment, setNewComment] = useState('');
     const [editingCommentId, setEditingCommentId] = useState(null);
     const [editCommentText, setEditCommentText] = useState('');
+    window.scrollTo({ top: 0, behavior: 'smooth' })
 
     const {
         _id,
@@ -183,7 +184,7 @@ const Details = () => {
             <div className='md:max-w-7xl  mx-auto p-2 grid grid-cols-1 md:grid-cols-3 gap-4'>
             <Helmet title={`${title} - Knowspire`}></Helmet>
             <section className='md:col-span-2 '>
-                <div className='space-y-3 shadow shadow-amber-100 p-2 rounded-2xl bg-[#1574c24b]'>
+                <div className='space-y-3 shadow shadow-amber-100 p-2 rounded-2xl bg-base-300'>
 
                     <div className='p-2'>
                         <img src={thumbnail} className='w-full rounded-xl' alt="" />
@@ -298,7 +299,7 @@ const Details = () => {
                 </div>
             </section>
 
-            <section className='shadow shadow-amber-100 p-4 rounded-2xl bg-[#1574c24b]'>
+            <section className='shadow shadow-amber-100 p-4 rounded-2xl bg-base-300'>
                 <div>
                     <h3 className="text-2xl font-semibold mb-2">Categories</h3>
                     <div className="flex flex-col w-full gap-2">

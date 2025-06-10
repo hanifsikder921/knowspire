@@ -3,11 +3,12 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../../provider/AuthProvider';
 import axios from 'axios';
 import { Helmet } from 'react-helmet-async';
+import PageWrapper from '../../components/TransitionWrapper/PageWrapper';
 
 const PostArticles = () => {
     const { user } = useContext(AuthContext);
     console.log(user);
-    
+
     const [formData, setFormData] = useState({
         title: '',
         content: '',
@@ -28,8 +29,8 @@ const PostArticles = () => {
             tags: rawData.tags.split(',').map(tag => tag.trim()),
             authorEmail: user?.email,
             authorName: user?.displayName,
-            authorAvatar:user?.photoURL,
-            author_id:user?.uid
+            authorAvatar: user?.photoURL,
+            author_id: user?.uid
         };
 
         try {
@@ -47,7 +48,7 @@ const PostArticles = () => {
 
                 // Reset the form
                 form.reset();
-               
+
             } else {
                 throw new Error('Insertion failed');
             }
@@ -63,68 +64,70 @@ const PostArticles = () => {
     };
 
     return (
-        <div className="max-w-3xl mx-auto px-4 py-10">
-            <Helmet>
-                <title>
-                    Post New Article - Knowspire
-                </title>
-            </Helmet>
-            <h2 className="text-3xl font-bold mb-6 text-center theme-gradient py-3 !text-white">Post a New Article</h2>
-            <form onSubmit={handleSubmit} className="space-y-5 bg-base-200 p-6 rounded-xl shadow-md">
+        <PageWrapper>
+            <div className="max-w-3xl mx-auto px-4 py-10">
+                <Helmet>
+                    <title>
+                        Post New Article - Knowspire
+                    </title>
+                </Helmet>
+                <h2 className="text-3xl font-bold mb-6 text-center theme-gradient py-3 !text-white">Post a New Article</h2>
+                <form onSubmit={handleSubmit} className="space-y-5 bg-base-200 p-6 rounded-xl shadow-md">
 
-                <div>
-                    <label className="block font-medium mb-1">Title</label>
-                    <input name="title" className="input input-bordered w-full" required />
-                </div>
+                    <div>
+                        <label className="block font-medium mb-1">Title</label>
+                        <input name="title" className="input input-bordered w-full" required />
+                    </div>
 
-                <div>
-                    <label className="block font-medium mb-1">Content</label>
-                    <textarea name="content" className="textarea textarea-bordered w-full" rows={6} required></textarea>
-                </div>
+                    <div>
+                        <label className="block font-medium mb-1">Content</label>
+                        <textarea name="content" className="textarea textarea-bordered w-full" rows={6} required></textarea>
+                    </div>
 
-                <div>
-                    <label className="block font-medium mb-1">Category</label>
-                    <select name="category" className="select select-bordered w-full" required>
-                        <option value="">Select Category</option>
-                        <option value="Technology">Technology</option>
-                        <option value="Education">Education</option>
-                        <option value="Health">Health</option>
-                        <option value="Business">Business</option>
-                    </select>
-                </div>
+                    <div>
+                        <label className="block font-medium mb-1">Category</label>
+                        <select name="category" className="select select-bordered w-full" required>
+                            <option value="">Select Category</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Education">Education</option>
+                            <option value="Health">Health</option>
+                            <option value="Business">Business</option>
+                        </select>
+                    </div>
 
-                <div>
-                    <label className="block font-medium mb-1">Tags (comma-separated)</label>
-                    <input name="tags" className="input input-bordered w-full" placeholder="e.g. react, javascript, frontend" />
-                </div>
+                    <div>
+                        <label className="block font-medium mb-1">Tags (comma-separated)</label>
+                        <input name="tags" className="input input-bordered w-full" placeholder="e.g. react, javascript, frontend" />
+                    </div>
 
-                <div>
-                    <label className="block font-medium mb-1">Thumbnail Image URL</label>
-                    <input name="thumbnail" type="url" className="input input-bordered w-full" required />
-                </div>
+                    <div>
+                        <label className="block font-medium mb-1">Thumbnail Image URL</label>
+                        <input name="thumbnail" type="url" className="input input-bordered w-full" required />
+                    </div>
 
-                <div>
-                    <label className="block font-medium mb-1">Date</label>
-                    <input name="date" type="date" defaultValue={formData.date} className="input input-bordered w-full" required />
-                </div>
+                    <div>
+                        <label className="block font-medium mb-1">Date</label>
+                        <input name="date" type="date" defaultValue={formData.date} className="input input-bordered w-full" required />
+                    </div>
 
-                <div>
-                    <label className="block font-medium mb-1">Author Info</label>
-                    <input
-                        type="text"
-                        value={`${user?.displayName} (${user?.email})`}
-                        className="input input-bordered w-full bg-base-100"
-                        disabled
-                    />
-                </div>
+                    <div>
+                        <label className="block font-medium mb-1">Author Info</label>
+                        <input
+                            type="text"
+                            value={`${user?.displayName} (${user?.email})`}
+                            className="input input-bordered w-full bg-base-100"
+                            disabled
+                        />
+                    </div>
 
-                <div className="text-center pt-4">
-                    <button type="submit" className="btn bg-blue-600 hover:bg-blue-800 text-white">
-                        Post Article
-                    </button>
-                </div>
-            </form>
-        </div>
+                    <div className="text-center pt-4">
+                        <button type="submit" className="btn bg-blue-600 hover:bg-blue-800 text-white">
+                            Post Article
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </PageWrapper>
     );
 };
 

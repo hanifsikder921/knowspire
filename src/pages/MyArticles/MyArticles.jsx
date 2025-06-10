@@ -6,6 +6,7 @@ import { LuEye } from 'react-icons/lu';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { Helmet } from 'react-helmet-async';
+import PageWrapper from './../../components/TransitionWrapper/PageWrapper';
 
 const MyArticles = () => {
     const { user } = useContext(AuthContext);
@@ -128,211 +129,215 @@ const MyArticles = () => {
     }
 
     return (
-        <div className="max-w-6xl mx-auto px-4 py-8">
-            <Helmet>
-                <title>My Article -KnowSpire</title>
-            </Helmet>
-            <h2 className="text-3xl font-bold mb-6 text-center text-primary">My Articles</h2>
+        <PageWrapper>
+            <div className="max-w-6xl mx-auto px-4 py-8">
+                <Helmet>
+                    <title>My Article -KnowSpire</title>
+                </Helmet>
+                <h2 className="text-3xl font-bold mb-6 text-center text-primary">My Articles</h2>
 
-            <Link to="/postArticles">
-                <button className="btn btn-primary my-2">Add New</button>
-            </Link>
-
-            {articles.length === 0 ? (
-                <div className="flex items-center flex-col gap-3">
-                    <p className="text-center">You have not added any articles yet.</p>
-                    <Link to="/add-article">
-                        <button className="btn btn-primary">Add New Article</button>
+                {articles?.length > 0 && (
+                    <Link to="/postArticles">
+                        <button className="btn btn-primary my-2">Add New</button>
                     </Link>
-                </div>
-            ) : (
-                <div className="overflow-x-auto">
-                    {/* Desktop View */}
-                    <div className="hidden md:block">
-                        <table className="table w-full">
-                            <thead className="bg-base-200 text-base font-semibold">
-                                <tr>
-                                    <th>SL.</th>
-                                    <th>Image</th>
-                                    <th>Title</th>
-                                    <th>Category</th>
-                                    <th>Status</th>
-                                    <th className="text-center">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {[...articles].reverse().map((article, index) => (
-                                    <tr key={article._id} className="hover:bg-base-300 transition">
-                                        <td>{index + 1}</td>
-                                        <td>
-                                            <img className="w-15 h-12 rounded-md" src={article.thumbnail} alt="No Image" />
-                                        </td>
-                                        <td>{article.title}</td>
-                                        <td>{article.category}</td>
-                                        <td>
-                                            <span className={`badge ${article.status === 'Published' ? 'badge-success' : 'badge-error'}`}>
-                                                {article.status || 'Published'}
-                                            </span>
-                                        </td>
-                                        <td className="space-x-2 text-center">
-                                            <button className="btn btn-sm btn-warning" onClick={() => handleEditClick(article)}>
-                                                <FaEdit /> Edit
-                                            </button>
-                                            <button className="btn btn-sm btn-error" onClick={() => handleDelete(article._id)}>
-                                                <FaTrash /> Delete
-                                            </button>
-                                            <Link to={`/details/${article._id}`}>
-                                                <button className="btn btn-sm btn-success">
-                                                    <LuEye /> View
-                                                </button>
-                                            </Link>
-                                        </td>
+                )}
+
+                {articles.length === 0 ? (
+                    <div className="flex items-center flex-col gap-3">
+                        <p className="text-center">You have not added any articles yet.</p>
+                        <Link to="/add-article">
+                            <button className="btn btn-primary">Add New Article</button>
+                        </Link>
+                    </div>
+                ) : (
+                    <div className="overflow-x-auto">
+                        {/* Desktop View */}
+                        <div className="hidden md:block">
+                            <table className="table w-full">
+                                <thead className="bg-base-200 text-base font-semibold">
+                                    <tr>
+                                        <th>SL.</th>
+                                        <th>Image</th>
+                                        <th>Title</th>
+                                        <th>Category</th>
+                                        <th>Status</th>
+                                        <th className="text-center">Actions</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody>
+                                    {[...articles].reverse().map((article, index) => (
+                                        <tr key={article._id} className="hover:bg-base-300 transition">
+                                            <td>{index + 1}</td>
+                                            <td>
+                                                <img className="w-15 h-12 rounded-md" src={article.thumbnail} alt="No Image" />
+                                            </td>
+                                            <td>{article.title}</td>
+                                            <td>{article.category}</td>
+                                            <td>
+                                                <span className={`badge ${article.status === 'Published' ? 'badge-success' : 'badge-error'}`}>
+                                                    {article.status || 'Published'}
+                                                </span>
+                                            </td>
+                                            <td className="space-x-2 text-center">
+                                                <button className="btn btn-sm btn-warning" onClick={() => handleEditClick(article)}>
+                                                    <FaEdit /> Edit
+                                                </button>
+                                                <button className="btn btn-sm btn-error" onClick={() => handleDelete(article._id)}>
+                                                    <FaTrash /> Delete
+                                                </button>
+                                                <Link to={`/details/${article._id}`}>
+                                                    <button className="btn btn-sm btn-success">
+                                                        <LuEye /> View
+                                                    </button>
+                                                </Link>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
 
-                    {/* Mobile View */}
-                    <div className="md:hidden space-y-4 mx-auto">
-                        {articles.map((article, index) => (
-                            <div key={article._id} className="p-4 rounded-lg bg-base-300 shadow-md">
-                                <div className="flex items-center justify-between">
-                                    <div>
-                                        <p className="font-semibold text-lg">
-                                            <span className="font-bold">{index + 1}</span> - {article.title}
-                                        </p>
-                                        <p>
-                                            <span className="font-semibold">Category:</span> {article.category}
-                                        </p>
-                                        <p>
-                                            <span className="font-semibold">Status:</span> {article.status || 'Published'}
-                                        </p>
+                        {/* Mobile View */}
+                        <div className="md:hidden space-y-4 mx-auto">
+                            {articles.map((article, index) => (
+                                <div key={article._id} className="p-4 rounded-lg bg-base-300 shadow-md">
+                                    <div className="flex items-center justify-between">
+                                        <div>
+                                            <p className="font-semibold text-lg">
+                                                <span className="font-bold">{index + 1}</span> - {article.title}
+                                            </p>
+                                            <p>
+                                                <span className="font-semibold">Category:</span> {article.category}
+                                            </p>
+                                            <p>
+                                                <span className="font-semibold">Status:</span> {article.status || 'Published'}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <img className="w-15 h-12 rounded-lg" src={article.thumbnail} alt="" />
+                                        </div>
                                     </div>
-                                    <div>
-                                        <img className="w-15 h-12 rounded-lg" src={article.thumbnail} alt="" />
-                                    </div>
-                                </div>
-                                <div className="flex justify-center mt-3 gap-2">
-                                    <button className="btn btn-sm btn-warning" onClick={() => handleEditClick(article)}>
-                                        <FaEdit /> Edit
-                                    </button>
-                                    <button className="btn btn-sm btn-error" onClick={() => handleDelete(article._id)}>
-                                        <FaTrash /> Delete
-                                    </button>
-                                    <Link to={`/details/${article._id}`}>
-                                        <button className="btn btn-sm btn-success">
-                                            <LuEye /> View
+                                    <div className="flex justify-center mt-3 gap-2">
+                                        <button className="btn btn-sm btn-warning" onClick={() => handleEditClick(article)}>
+                                            <FaEdit /> Edit
                                         </button>
-                                    </Link>
+                                        <button className="btn btn-sm btn-error" onClick={() => handleDelete(article._id)}>
+                                            <FaTrash /> Delete
+                                        </button>
+                                        <Link to={`/details/${article._id}`}>
+                                            <button className="btn btn-sm btn-success">
+                                                <LuEye /> View
+                                            </button>
+                                        </Link>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
 
-            {/* Update Modal */}
-            <dialog id="updateModal" className="modal">
-                <div className="modal-box">
+                {/* Update Modal */}
+                <dialog id="updateModal" className="modal">
+                    <div className="modal-box">
 
-                    <div className="divider font-semibold text-lg">Update Article</div>
-                    <form onSubmit={handleUpdate} className='space-y-2'>
-                        <div>
+                        <div className="divider font-semibold text-lg">Update Article</div>
+                        <form onSubmit={handleUpdate} className='space-y-2'>
+                            <div>
 
-                            <label className="block font-medium mb-1">Title</label>
-                            <input
-                                type="text"
-                                name="title"
-                                value={formData.title}
-                                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                                className="input input-bordered w-full my-2"
-                                placeholder="Title"
-                                required
-                            />
-                        </div>
-
-
-                        <div>
+                                <label className="block font-medium mb-1">Title</label>
+                                <input
+                                    type="text"
+                                    name="title"
+                                    value={formData.title}
+                                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                                    className="input input-bordered w-full my-2"
+                                    placeholder="Title"
+                                    required
+                                />
+                            </div>
 
 
-                            <label className="block font-medium mb-1">Content</label>
-                            <textarea
-                                name="content"
-                                value={formData.content}
-                                onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                                className="textarea textarea-bordered w-full my-2"
-                                placeholder="Content"
-                                required
-                            />
-                        </div>
+                            <div>
 
 
-                        <div>
-                            <label className="block font-medium mb-1">Category</label>
-                            <select
-                                name="category"
-                                value={formData.category}
-                                onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                                className="select select-bordered w-full"
-                                required
-                            >
-                                <option value="">Select Category</option>
-                                <option value="Technology">Technology</option>
-                                <option value="Education">Education</option>
-                                <option value="Health">Health</option>
-                                <option value="Business">Business</option>
-                            </select>
-                        </div>
-
-                        <div>
-
-                            <label className="block font-medium mb-1">Tags (comma-separated)</label>
-                            <input
-                                type="text"
-                                name="tags"
-                                value={formData.tags}
-                                onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
-                                className="input input-bordered w-full my-2"
-                                placeholder="Tags (comma separated)"
-                            />
-                        </div>
-
-                        <div>
+                                <label className="block font-medium mb-1">Content</label>
+                                <textarea
+                                    name="content"
+                                    value={formData.content}
+                                    onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+                                    className="textarea textarea-bordered w-full my-2"
+                                    placeholder="Content"
+                                    required
+                                />
+                            </div>
 
 
-                            <label className="block font-medium mb-1">Thumbnail Image URL</label>
-                            <input
-                                type="text"
-                                name="thumbnail"
-                                value={formData.thumbnail}
-                                onChange={(e) => setFormData({ ...formData, thumbnail: e.target.value })}
-                                className="input input-bordered w-full my-2"
-                                placeholder="Thumbnail Image URL"
-                            />
-                        </div>
+                            <div>
+                                <label className="block font-medium mb-1">Category</label>
+                                <select
+                                    name="category"
+                                    value={formData.category}
+                                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                                    className="select select-bordered w-full"
+                                    required
+                                >
+                                    <option value="">Select Category</option>
+                                    <option value="Technology">Technology</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Health">Health</option>
+                                    <option value="Business">Business</option>
+                                </select>
+                            </div>
 
-                        <div>
+                            <div>
+
+                                <label className="block font-medium mb-1">Tags (comma-separated)</label>
+                                <input
+                                    type="text"
+                                    name="tags"
+                                    value={formData.tags}
+                                    onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
+                                    className="input input-bordered w-full my-2"
+                                    placeholder="Tags (comma separated)"
+                                />
+                            </div>
+
+                            <div>
 
 
-                            <label className="block font-medium mb-1">Date</label>
-                            <input
-                                type="date"
-                                name="date"
-                                value={formData.date}
-                                onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                                className="input input-bordered w-full my-2"
-                            />
-                        </div>
-                        <button className="btn btn-primary mt-2" type="submit">Update</button>
-                    </form>
+                                <label className="block font-medium mb-1">Thumbnail Image URL</label>
+                                <input
+                                    type="text"
+                                    name="thumbnail"
+                                    value={formData.thumbnail}
+                                    onChange={(e) => setFormData({ ...formData, thumbnail: e.target.value })}
+                                    className="input input-bordered w-full my-2"
+                                    placeholder="Thumbnail Image URL"
+                                />
+                            </div>
 
-                    <form method="dialog">
-                        <button className="btn mt-4">Close</button>
-                    </form>
-                </div>
-            </dialog>
-        </div>
+                            <div>
+
+
+                                <label className="block font-medium mb-1">Date</label>
+                                <input
+                                    type="date"
+                                    name="date"
+                                    value={formData.date}
+                                    onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                                    className="input input-bordered w-full my-2"
+                                />
+                            </div>
+                            <button className="btn btn-primary mt-2" type="submit">Update</button>
+                        </form>
+
+                        <form method="dialog">
+                            <button className="btn mt-4">Close</button>
+                        </form>
+                    </div>
+                </dialog>
+            </div>
+        </PageWrapper>
     );
 };
 

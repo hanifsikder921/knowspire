@@ -2,10 +2,12 @@ import React from 'react';
 import { useLoaderData, useParams } from 'react-router';
 import CatArticleCard from '../../components/ArticleCard/CatArticleCard';
 import { Helmet } from 'react-helmet-async';
+import PageWrapper from '../../components/TransitionWrapper/PageWrapper';
 
 const UniversalCategory = () => {
     const { category } = useParams();
     const allArticles = useLoaderData().data;
+    window.scrollTo({ top: 0, behavior: 'smooth' })
 
     // Filter articles by category from URL params
     const categoryArticles = allArticles.filter(article =>
@@ -28,37 +30,40 @@ const UniversalCategory = () => {
 
 
     return (
-        <div className="container mx-auto px-4 py-8">
-            <Helmet title={`${category.toUpperCase()} - Knowspire`}></Helmet>
-            {/* Enhanced Header Section */}
-            <div className="text-center mb-12">
-                <div className="relative inline-block">
-                    <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
-                        {categoryName}
-                        <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></span>
-                    </h1>
+
+        <PageWrapper>
+            <div className="container mx-auto px-4 py-8">
+                <Helmet title={`${category.toUpperCase()} - Knowspire`}></Helmet>
+                {/* Enhanced Header Section */}
+                <div className="text-center mb-12">
+                    <div className="relative inline-block">
+                        <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+                            {categoryName}
+                            <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></span>
+                        </h1>
+                    </div>
+
+                    <p className="text-xl py-5 h-8">
+                        {categoryDescriptions[category?.toLowerCase()] || "Discover amazing articles"}
+                    </p>
+
+
                 </div>
 
-                <p className="text-xl py-5 h-8">
-                    {categoryDescriptions[category?.toLowerCase()] || "Discover amazing articles"}
-                </p>
-
-               
+                {categoryArticles.length === 0 ? (
+                    <div className="text-center text-gray-500 text-lg py-12">
+                        <p>No {categoryName.toLowerCase()} articles found.</p>
+                        <p className="mt-2 text-sm">Check back later for new content!</p>
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-1 gap-6">
+                        {categoryArticles.map(article => (
+                            <CatArticleCard key={article._id} article={article} />
+                        ))}
+                    </div>
+                )}
             </div>
-
-            {categoryArticles.length === 0 ? (
-                <div className="text-center text-gray-500 text-lg py-12">
-                    <p>No {categoryName.toLowerCase()} articles found.</p>
-                    <p className="mt-2 text-sm">Check back later for new content!</p>
-                </div>
-            ) : (
-                <div className="grid grid-cols-1 gap-6">
-                    {categoryArticles.map(article => (
-                        <CatArticleCard key={article._id} article={article} />
-                    ))}
-                </div>
-            )}
-        </div>
+        </PageWrapper>
     );
 };
 

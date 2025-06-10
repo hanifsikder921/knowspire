@@ -5,10 +5,12 @@ import BrowsCategory from '../../components/ArticleCategory/BrowsCategory';
 import TopContributors from '../../components/TopContributors/TopContrubutors';
 import LatestArticles from '../../components/LatestArticles/LatestArticles';
 import { Helmet } from 'react-helmet-async';
+import PageWrapper from '../../components/TransitionWrapper/PageWrapper';
 
 const Home = () => {
     return (
-        <div >
+       <PageWrapper>
+         <div >
             <Helmet priority="high"><title> Home - Knowspire</title></Helmet>
 
             <BannerSlider />
@@ -18,6 +20,7 @@ const Home = () => {
             <LatestArticles/>
 
         </div>
+       </PageWrapper>
     );
 };
 

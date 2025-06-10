@@ -14,7 +14,6 @@ const PageWrapper = ({ children }) => {
       initial="initial"
       animate="animate"
       exit="exit"
-      className="min-h-screen"
     >
       {children}
     </motion.div>

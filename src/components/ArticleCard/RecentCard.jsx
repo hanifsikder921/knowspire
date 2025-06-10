@@ -20,6 +20,7 @@ const AllArticles = () => {
 
         fetchArticles();
     }, []);
+    window.scrollTo({ top: 0, behavior: 'smooth' })
 
     if (loading) return <p className="text-center mt-10">Loading articles...</p>;
 
