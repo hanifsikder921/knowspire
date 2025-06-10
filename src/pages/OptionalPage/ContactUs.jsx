@@ -21,7 +21,7 @@ const ContactUs = () => {
                             id="firstName"
                             name="firstName"
                             placeholder="John"
-                            className="mt-1 block w-full border focus:ring-1 rounded-lg px-4 py-2"
+                            className="mt-1 block w-full border  focus:ring-1 rounded-lg px-4 py-2"
                         />
                     </div>
                     <div>

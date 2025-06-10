@@ -19,6 +19,7 @@ import ContactUs from "../pages/OptionalPage/ContactUs";
 import AboutUs from "../pages/OptionalPage/AboutUs";
 import PublicRoute from "../provider/PublicRoute";
 import TermsAndCondition from "../pages/OptionalPage/TermsAndCondition";
+import MyProfile from "../pages/MyProfile/MyProfile";
 
 
 
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/condition",
-                Component:TermsAndCondition
+                Component: TermsAndCondition
             },
 
             {
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
                 path: '/support',
                 Component: ContactUs
 
+            },
+            {
+                path: 'myprofile',
+                Component: ()=><PrivateRoute><MyProfile/></PrivateRoute>
             },
             {
                 path: '/my-added-article/:email',

@@ -6,6 +6,11 @@ import ThemesController from '../Themes/ThemesController';
 import { useEffect } from 'react';
 import profileicon from "../../assets/profile.png"
 import Loading from '../Loading/Loading';
+import { MdEditSquare } from "react-icons/md";
+import { SiProtondrive } from "react-icons/si";
+import { FaUser } from "react-icons/fa6";
+import { IoLogOutSharp } from "react-icons/io5";
+
 
 
 const Navbar = () => {
@@ -92,7 +97,7 @@ const Navbar = () => {
                                 d="M4 6h16M4 12h8m-8 6h16" />
                         </svg>
                     </div>
-                    <ul  tabIndex={0}
+                    <ul tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 shadow shadow-amber-100   rounded-box z-1 mt-5 w-52 p-2  ">
                         {menu}
                     </ul>
@@ -125,25 +130,35 @@ const Navbar = () => {
                                     <Link
                                         to={`/my-added-article/${user?.email}`}
                                         onClick={() => setDropdownOpen(false)}
-                                        className="block hover:text-blue-400"
+                                        className="block hover:text-blue-400 font-semibold"
                                     >
-                                        My Article
+
+                                        <span className='flex items-center gap-2'><SiProtondrive /> My Article </span>
                                     </Link>
                                     <Link
                                         to="/postArticles"
                                         onClick={() => setDropdownOpen(false)}
-                                        className="block hover:text-blue-400"
+                                        className="block hover:text-blue-400 font-semibold"
                                     >
-                                        Post Article
+                                        <span className='flex items-center gap-2'><MdEditSquare /> Post Article</span>
+                                    </Link>
+                                    <Link
+                                        to="/myprofile"
+                                        onClick={() => setDropdownOpen(false)}
+                                        className="block hover:text-blue-400 font-semibold"
+                                    >
+
+                                        <span className='flex items-center gap-2'> <FaUser /> My Profile </span>
                                     </Link>
                                     <button
                                         onClick={() => {
                                             setDropdownOpen(false);
                                             handleLogout();
                                         }}
-                                        className="block text-left w-full hover:text-red-500"
+                                        className="block text-left w-full hover:text-red-500 font-semibold"
                                     >
-                                        Logout
+
+                                        <span className='flex items-center gap-2'><IoLogOutSharp />Logout </span>
                                     </button>
                                 </div>
                             )}

@@ -37,13 +37,13 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, provider)
     }
 
-    // Update user profile
     const updateDetails = (currentUser, { displayName, photoURL }) => {
         return updateProfile(currentUser, {
             displayName,
             photoURL
         });
     };
+
 
 
 
@@ -83,6 +83,7 @@ const AuthProvider = ({ children }) => {
         googleSignin,
         loading,
         setLoading,
+        
 
     };
 
