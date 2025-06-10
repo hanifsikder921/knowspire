@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router';
+import { Link, useLoaderData, useLocation } from 'react-router';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../provider/AuthProvider';
@@ -18,6 +18,8 @@ const Details = () => {
     const [newComment, setNewComment] = useState('');
     const [editingCommentId, setEditingCommentId] = useState(null);
     const [editCommentText, setEditCommentText] = useState('');
+    const location = useLocation();
+
     window.scrollTo({ top: 0, behavior: 'smooth' })
 
     const {
@@ -77,7 +79,7 @@ const Details = () => {
                 const res = await fetch(`${import.meta.env.VITE_API_URL}/articles`);
                 const articles = await res.json();
 
-                // Extract unique categories from articles
+
                 const uniqueCategories = [...new Set(articles.map(article => article.category))];
                 setCategories(uniqueCategories);
             } catch (err) {
@@ -182,145 +184,157 @@ const Details = () => {
     return (
         <PageWrapper>
             <div className='md:max-w-7xl  mx-auto p-2 grid grid-cols-1 md:grid-cols-3 gap-4'>
-            <Helmet title={`${title} - Knowspire`}></Helmet>
-            <section className='md:col-span-2 '>
-                <div className='space-y-3 shadow shadow-amber-100 p-2 rounded-2xl bg-base-300'>
+                <Helmet title={`${title} - Knowspire`}></Helmet>
+                <section className='md:col-span-2 '>
+                    <div className='space-y-3 shadow shadow-amber-100 p-2 rounded-2xl bg-base-300'>
 
-                    <div className='p-2'>
-                        <img src={thumbnail} className='w-full rounded-xl' alt="" />
-                    </div>
-
-                    <div className='p-2 space-y-2'>
-                        <h2 className='md:text-2xl text-xl  font-semibold text-sky-500'>{title} </h2>
-                        <button className='btn btn-xs '>{category}</button>
-                        <p className='text-xl leading-10 text-justify'>{content}</p>
-
-                        {/* Like Button  and comment*/}
-                        <div className="mt-4 flex items-center gap-2">
-                            <button onClick={handleLike} className="flex items-center gap-2 text-xl text-red-500 btn rounded-2xl">
-                                {liked ? <FcLike /> : <GrFavorite />}
-                                <span>{likedBy.length + (liked && !likedBy.includes(user?.email) ? 1 : 0) - (!liked && likedBy.includes(user?.email) ? 1 : 0)}</span>
-                            </button>
-                            <button className='btn rounded-2xl'>{comments.length} Comments</button>
-                        </div>
-                        {/* tag get  */}
-                        <div>
-
-                            <h2 className='md:my-4 text-2xl font-semibold'>Tags</h2>
-                            {
-                                tags.map(tag => <button className='btn  btn-dash mr-2'>{tag}</button>)
-                            }
-
+                        <div className='p-2'>
+                            <img src={thumbnail} className='w-full rounded-xl' alt="" />
                         </div>
 
-                        <h2 className='md:mt-4 text-2xl font-semibold'>Author</h2>
-                        <div className='shadow shadow-amber-100 rounded-2xl p-2'>
-                            <div className='flex md:flex-row flex-col md:items-center gap-2 justify-between'>
-                                <div className='flex md:flex-row flex-col  md:items-center  gap-2'>
-                                    <img className='rounded-full shadow shadow-amber-100 w-12 h-12' src={authorAvatar || "https://i.ibb.co/4pDNDk1/avatar.png"} alt="" />
-                                    <div className='flex flex-col'>
-                                        <span>{authorName}</span>
-                                        <span>{authorEmail}</span>
+                        <div className='p-2 space-y-2'>
+                            <h2 className='md:text-2xl text-xl  font-semibold text-sky-500'>{title} </h2>
+                            <button className='btn btn-xs '>{category}</button>
+                            <p className='text-xl leading-10 text-justify'>{content}</p>
+
+                            {/* Like Button  and comment*/}
+                            <div className="mt-4 flex items-center gap-2">
+                                <button onClick={handleLike} className="flex items-center gap-2 text-xl text-red-500 btn rounded-2xl">
+                                    {liked ? <FcLike /> : <GrFavorite />}
+                                    <span>{likedBy.length + (liked && !likedBy.includes(user?.email) ? 1 : 0) - (!liked && likedBy.includes(user?.email) ? 1 : 0)}</span>
+                                </button>
+                                <button className='btn rounded-2xl'>{comments.length} Comments</button>
+                            </div>
+                            {/* tag get  */}
+                            <div>
+
+                                <h2 className='md:my-4 text-2xl font-semibold'>Tags</h2>
+                                {
+                                    tags.map(tag => <button className='btn  btn-dash mr-2'>{tag}</button>)
+                                }
+
+                            </div>
+
+                            <h2 className='md:mt-4 text-2xl font-semibold'>Author</h2>
+                            <div className='shadow shadow-amber-100 rounded-2xl p-2'>
+                                <div className='flex md:flex-row flex-col md:items-center gap-2 justify-between'>
+                                    <div className='flex md:flex-row flex-col  md:items-center  gap-2'>
+                                        <img className='rounded-full shadow shadow-amber-100 w-12 h-12' src={authorAvatar || "https://i.ibb.co/4pDNDk1/avatar.png"} alt="" />
+                                        <div className='flex flex-col'>
+                                            <span>{authorName}</span>
+                                            <span>{authorEmail}</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div>
-                                    <span> Publish Date: {date}</span>
+                                    <div>
+                                        <span> Publish Date: {date}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    {/* Comments Section */}
-                    <div>
-                        <h2 className='md:mt-4 text-2xl font-semibold'>Recent Comment</h2>
+                        {/* Comments Section */}
+                        <div>
+                            <h2 className='md:mt-4 text-2xl font-semibold'>Recent Comment</h2>
 
-                        {user ? (
-                            <form onSubmit={handleCommentSubmit} className="my-4">
-                                <textarea
-                                    className="w-full p-2 rounded border"
-                                    rows="3"
-                                    value={newComment}
-                                    onChange={(e) => setNewComment(e.target.value)}
-                                    placeholder="Write your comment..."
-                                    required
-                                />
-                                <button className="bg-blue-600 text-white px-4 py-2 mt-2 rounded">Submit</button>
-                            </form>
-                        ) : (
-                            <p className="text-yellow-700">Please login to comment.</p>
-                        )}
-
-                        <div className="space-y-4 mt-4">
-                            {comments.length === 0 ? (
-                                <p>No comments yet.</p>
+                            {user ? (
+                                <form onSubmit={handleCommentSubmit} className="my-4">
+                                    <textarea
+                                        className="w-full p-2 rounded border"
+                                        rows="3"
+                                        value={newComment}
+                                        onChange={(e) => setNewComment(e.target.value)}
+                                        placeholder="Write your comment..."
+                                        required
+                                    />
+                                    <button className="bg-blue-600 text-white px-4 py-2 mt-2 rounded">Submit</button>
+                                </form>
                             ) : (
-                                comments.map(comment => (
-                                    <div key={comment._id} className=" shadow shadow-amber-50 p-3 rounded ">
-                                        <div className="flex justify-between">
-                                            <div className="flex gap-2 items-center">
-                                                <img className="w-8 h-8 rounded-full" src={comment.userPhoto} alt={comment.user} />
-                                                <div>
-                                                    <p className="font-semibold">{comment.user}</p>
-                                                    <p className="text-sm ">{formatDate(comment.createdAt)}</p>
+                                <p className="text-yellow-700 ml-1 text-base">
+                                    Please
+                                    <span>
+                                        <Link
+                                            to="/auth/login"
+                                            state={{ from: location }}
+                                            className='font-semibold text-blue-600'>
+                                            Login
+                                        </Link>
+                                    </span>
+                                    to comment.
+                                </p>
+
+                            )}
+
+                            <div className="space-y-4 mt-4">
+                                {comments.length === 0 ? (
+                                    <p>No comments yet.</p>
+                                ) : (
+                                    comments.map(comment => (
+                                        <div key={comment._id} className=" shadow shadow-amber-50 p-3 rounded ">
+                                            <div className="flex justify-between">
+                                                <div className="flex gap-2 items-center">
+                                                    <img className="w-8 h-8 rounded-full" src={comment.userPhoto} alt={comment.user} />
+                                                    <div>
+                                                        <p className="font-semibold">{comment.user}</p>
+                                                        <p className="text-sm ">{formatDate(comment.createdAt)}</p>
+                                                    </div>
                                                 </div>
+
+                                                {comment.userEmail === user?.email && (
+                                                    <div className="space-x-2 text-sm">
+                                                        {editingCommentId === comment._id ? (
+                                                            <>
+                                                                <button onClick={() => handleUpdateComment(comment._id)} className="text-green-600">Save</button>
+                                                                <button onClick={() => setEditingCommentId(null)} className="text-gray-600">Cancel</button>
+                                                            </>
+                                                        ) : (
+                                                            <>
+                                                                <button onClick={() => handleEditComment(comment)} className="text-blue-600">Edit</button>
+                                                                <button onClick={() => handleDeleteComment(comment._id)} className="text-red-600">Delete</button>
+                                                            </>
+                                                        )}
+                                                    </div>
+                                                )}
                                             </div>
 
-                                            {comment.userEmail === user?.email && (
-                                                <div className="space-x-2 text-sm">
-                                                    {editingCommentId === comment._id ? (
-                                                        <>
-                                                            <button onClick={() => handleUpdateComment(comment._id)} className="text-green-600">Save</button>
-                                                            <button onClick={() => setEditingCommentId(null)} className="text-gray-600">Cancel</button>
-                                                        </>
-                                                    ) : (
-                                                        <>
-                                                            <button onClick={() => handleEditComment(comment)} className="text-blue-600">Edit</button>
-                                                            <button onClick={() => handleDeleteComment(comment._id)} className="text-red-600">Delete</button>
-                                                        </>
-                                                    )}
-                                                </div>
+                                            {editingCommentId === comment._id ? (
+                                                <textarea
+                                                    value={editCommentText}
+                                                    onChange={(e) => setEditCommentText(e.target.value)}
+                                                    className="w-full mt-2 p-2 border rounded"
+                                                />
+                                            ) : (
+                                                <p className="mt-2">{comment.text}</p>
                                             )}
                                         </div>
-
-                                        {editingCommentId === comment._id ? (
-                                            <textarea
-                                                value={editCommentText}
-                                                onChange={(e) => setEditCommentText(e.target.value)}
-                                                className="w-full mt-2 p-2 border rounded"
-                                            />
-                                        ) : (
-                                            <p className="mt-2">{comment.text}</p>
-                                        )}
-                                    </div>
-                                ))
-                            )}
+                                    ))
+                                )}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section className='shadow shadow-amber-100 p-4 rounded-2xl bg-base-300'>
-                <div>
-                    <h3 className="text-2xl font-semibold mb-2">Categories</h3>
-                    <div className="flex flex-col w-full gap-2">
-                        {categories.map((category, index) => (
-                            <Link key={index} to={`/cat/${encodeURIComponent(category)}`}>
+                <section className='shadow shadow-amber-100 p-4 rounded-2xl bg-base-300'>
+                    <div>
+                        <h3 className="text-2xl font-semibold mb-2">Categories</h3>
+                        <div className="flex flex-col w-full gap-2">
+                            {categories.map((category, index) => (
+                                <Link key={index} to={`/cat/${encodeURIComponent(category)}`}>
 
-                                <button className="px-4 py-1 btn  rounded-md transition w-full">
-                                    {category}
-                                </button>
+                                    <button className="px-4 py-1 btn  rounded-md transition w-full">
+                                        {category}
+                                    </button>
 
-                            </Link>
-                        ))}
+                                </Link>
+                            ))}
+                        </div>
                     </div>
-                </div>
-                <div className='md:mt-8'>
-                    <RecentCard />
-                </div>
-            </section>
+                    <div className='md:mt-8'>
+                        <RecentCard />
+                    </div>
+                </section>
 
 
-        </div>
+            </div>
         </PageWrapper>
     );
 };

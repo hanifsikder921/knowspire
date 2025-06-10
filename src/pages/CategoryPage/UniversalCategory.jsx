@@ -3,21 +3,24 @@ import { useLoaderData, useParams } from 'react-router';
 import CatArticleCard from '../../components/ArticleCard/CatArticleCard';
 import { Helmet } from 'react-helmet-async';
 import PageWrapper from '../../components/TransitionWrapper/PageWrapper';
+import Lottie from 'lottie-react';
+import noData from '../../assets/nodata.json'
+
 
 const UniversalCategory = () => {
     const { category } = useParams();
     const allArticles = useLoaderData().data;
     window.scrollTo({ top: 0, behavior: 'smooth' })
 
-    // Filter articles by category from URL params
+
     const categoryArticles = allArticles.filter(article =>
         article.category.toLowerCase() === category.toLowerCase()
     );
 
-    // Capitalize first letter for title
+
     const categoryName = category.charAt(0).toUpperCase() + category.slice(1);
 
-    // Category descriptions
+
     const categoryDescriptions = {
         technology: "Explore the latest technological advancements, innovations, and digital breakthroughs that are revolutionizing the modern world. From artificial intelligence to space exploration, dive deep into the future of technology and how it's reshaping every aspect of our lives.",
 
@@ -51,9 +54,11 @@ const UniversalCategory = () => {
                 </div>
 
                 {categoryArticles.length === 0 ? (
-                    <div className="text-center text-gray-500 text-lg py-12">
-                        <p>No {categoryName.toLowerCase()} articles found.</p>
-                        <p className="mt-2 text-sm">Check back later for new content!</p>
+                    <div className="text-center text-gray-500 text-lg">
+                        <div className='md:flex justify-center items-center hidden md:w-4/12 mx-auto'>
+                            <Lottie animationData={noData}></Lottie>
+                        </div>
+
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 gap-6">

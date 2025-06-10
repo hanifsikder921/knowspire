@@ -21,15 +21,28 @@ const Navbar = () => {
 
 
     const handleLogout = () => {
-        logoutUser()
-            .then(() => {
-                localStorage.removeItem('token');
-                Swal.fire("Success", "Logout successfully", "success");
-                navigate("/auth/login");
-            })
-            .catch((error) => {
-                Swal.fire("Error", error.message, "error");
-            });
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You will be logged out of your account!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, logout',
+            cancelButtonText: 'No, stay logged in'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                logoutUser()
+                    .then(() => {
+                        localStorage.removeItem('token');
+                        Swal.fire("Logged Out!", "You have been logged out successfully.", "success");
+                        navigate("/auth/login");
+                    })
+                    .catch((error) => {
+                        Swal.fire("Error", error.message, "error");
+                    });
+            }
+        });
     };
 
     const toggleDropdown = () => {

@@ -71,7 +71,7 @@ const PostArticles = () => {
                         Post New Article - Knowspire
                     </title>
                 </Helmet>
-                <h2 className="text-3xl font-bold mb-6 text-center theme-gradient py-3 !text-white">Post a New Article</h2>
+                <h2 className=" text-2xl md:text-3xl font-bold mb-6 text-center bg-gradient-to-r from-[#2b2bff] to-[#ff00cc] text-white py-3 rounded-md ">Post a New Article</h2>
                 <form onSubmit={handleSubmit} className="space-y-5 bg-base-200 p-6 rounded-xl shadow-md">
 
                     <div>

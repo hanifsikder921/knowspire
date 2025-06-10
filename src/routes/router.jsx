@@ -20,6 +20,8 @@ import AboutUs from "../pages/OptionalPage/AboutUs";
 import PublicRoute from "../provider/PublicRoute";
 import TermsAndCondition from "../pages/OptionalPage/TermsAndCondition";
 import MyProfile from "../pages/MyProfile/MyProfile";
+import TheifWarning from "../components/ThefProcection/TheifWarning";
+import InvalidAddress from "../components/ThefProcection/InvalidAddress";
 
 
 
@@ -90,7 +92,8 @@ const router = createBrowserRouter([
                         }
                     });
                 },
-                element: <PrivateRoute><MyArticles /></PrivateRoute>
+                element: <PrivateRoute><MyArticles /></PrivateRoute>,
+                errorElement: <TheifWarning/>
             },
             {
                 path: '/details/:id',
@@ -104,7 +107,8 @@ const router = createBrowserRouter([
                         return { message: "Server Disconnected" };
                     }
                 },
-                Component: Details
+                Component: Details,
+                errorElement:<InvalidAddress/>
             }
 
 

@@ -145,7 +145,7 @@ const MyArticles = () => {
                 {articles.length === 0 ? (
                     <div className="flex items-center flex-col gap-3">
                         <p className="text-center">You have not added any articles yet.</p>
-                        <Link to="/add-article">
+                        <Link to="/postArticles">
                             <button className="btn btn-primary">Add New Article</button>
                         </Link>
                     </div>
