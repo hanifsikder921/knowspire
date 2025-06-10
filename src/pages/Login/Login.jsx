@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../provider/AuthProvider';
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -61,6 +62,11 @@ const Login = () => {
 
     return (
         <div className="flex items-center justify-center px-4 py-10">
+            <Helmet>
+                <title>
+                    Login to Your Account - KnowSpire
+                </title>
+            </Helmet>
             <div className="mt-7 rounded-xl shadow shadow-gray-200 w-full max-w-md">
                 <div className="p-4 sm:p-7">
                     <div className="text-center">

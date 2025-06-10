@@ -1,8 +1,10 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const ContactUs = () => {
     return (
         <div className="max-w-4xl mx-auto px-4 py-12">
+            <Helmet title='Contact Us- Knowspire'></Helmet>
             <div className="text-center mb-10">
                 <h2 className="text-4xl font-bold">Get in Touch</h2>
                 <p className="mt-2 text-lg">

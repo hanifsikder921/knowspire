@@ -2,6 +2,7 @@ import React, { Suspense, useState } from 'react';
 import { useLoaderData } from 'react-router';
 import ArticleCard from '../../components/ArticleCard/ArticleCard';
 import Loading from '../../components/Loading/Loading';
+import { Helmet } from 'react-helmet-async';
 
 
 
@@ -34,6 +35,7 @@ const AllArticles = () => {
 
     return (
         <div>
+           <Helmet title='All Article - Knowspire'></Helmet>
             <Suspense fallback={<Loading/>}>
                 <div className='my-2 flex flex-col md:flex-row items-center justify-between md:w-full w-11/12 mx-auto'>
                     <div className='flex flex-col md:flex-row items-center'>

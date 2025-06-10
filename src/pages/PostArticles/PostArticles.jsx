@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../provider/AuthProvider';
 import axios from 'axios';
+import { Helmet } from 'react-helmet-async';
 
 const PostArticles = () => {
     const { user } = useContext(AuthContext);
@@ -63,6 +64,11 @@ const PostArticles = () => {
 
     return (
         <div className="max-w-3xl mx-auto px-4 py-10">
+            <Helmet>
+                <title>
+                    Post New Article - Knowspire
+                </title>
+            </Helmet>
             <h2 className="text-3xl font-bold mb-6 text-center theme-gradient py-3 !text-white">Post a New Article</h2>
             <form onSubmit={handleSubmit} className="space-y-5 bg-base-200 p-6 rounded-xl shadow-md">
 

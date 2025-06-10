@@ -1,8 +1,10 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const AboutUs = () => {
     return (
         <div className="max-w-4xl mx-auto px-4 py-10">
+            <Helmet title='About- Knowspire'></Helmet>
             <h1 className="text-3xl font-bold mb-4">About Us</h1>
             <p className="mb-4 text-lg">
                 Welcome to <strong>Knowletix</strong> – a vibrant knowledge-sharing platform designed specifically for students and learners.

@@ -80,7 +80,7 @@ const Navbar = () => {
     );
 
     return loading ? (
-        <Loading/>
+        <Loading />
     ) : (
         <div className="navbar w-11/12 mx-auto">
             <div className="navbar-start">
@@ -92,8 +92,8 @@ const Navbar = () => {
                                 d="M4 6h16M4 12h8m-8 6h16" />
                         </svg>
                     </div>
-                    <ul tabIndex={0}
-                        className="menu menu-sm dropdown-content  rounded-box z-1 mt-3 w-52 p-2 shadow ">
+                    <ul  tabIndex={0}
+                        className="menu menu-sm dropdown-content bg-base-100 shadow shadow-amber-100   rounded-box z-1 mt-5 w-52 p-2  ">
                         {menu}
                     </ul>
                 </div>
@@ -121,7 +121,7 @@ const Navbar = () => {
                                 </div>
                             </div>
                             {dropdownOpen && (
-                                <div className="absolute top-full right-0 mt-2 bg-violet-500  p-3 rounded-md shadow-lg z-50 space-y-2 w-48">
+                                <div className="absolute top-full right-0 mt-2 bg-base-200 md:bg-base-100 p-3 rounded-md shadow-lg z-50 space-y-2 w-48">
                                     <Link
                                         to={`/my-added-article/${user?.email}`}
                                         onClick={() => setDropdownOpen(false)}

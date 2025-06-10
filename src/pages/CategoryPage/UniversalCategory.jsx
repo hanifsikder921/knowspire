@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLoaderData, useParams } from 'react-router';
 import CatArticleCard from '../../components/ArticleCard/CatArticleCard';
+import { Helmet } from 'react-helmet-async';
 
 const UniversalCategory = () => {
     const { category } = useParams();
@@ -28,6 +29,7 @@ const UniversalCategory = () => {
 
     return (
         <div className="container mx-auto px-4 py-8">
+            <Helmet title={`${category.toUpperCase()} - Knowspire`}></Helmet>
             {/* Enhanced Header Section */}
             <div className="text-center mb-12">
                 <div className="relative inline-block">

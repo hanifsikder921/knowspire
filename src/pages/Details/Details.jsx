@@ -6,6 +6,7 @@ import { AuthContext } from '../../provider/AuthProvider';
 import RecentCard from '../../components/ArticleCard/RecentCard';
 import { FcLike } from "react-icons/fc";
 import { GrFavorite } from "react-icons/gr";
+import { Helmet } from 'react-helmet-async';
 
 const Details = () => {
     const article = useLoaderData();
@@ -178,6 +179,7 @@ const Details = () => {
 
     return (
         <div className='md:max-w-7xl  mx-auto p-2 grid grid-cols-1 md:grid-cols-3 gap-4'>
+            <Helmet title={`${title} - Knowspire`}></Helmet>
             <section className='md:col-span-2 '>
                 <div className='space-y-3 shadow shadow-amber-100 p-2 rounded-2xl bg-[#1574c24b]'>
 
@@ -286,7 +288,7 @@ const Details = () => {
                                         ) : (
                                             <p className="mt-2">{comment.text}</p>
                                         )}
-                                    </div> 
+                                    </div>
                                 ))
                             )}
                         </div>

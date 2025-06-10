@@ -3,17 +3,18 @@ import { Link, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { AuthContext } from '../../provider/AuthProvider';
+import { Helmet } from 'react-helmet-async';
 
 const Register = () => {
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const [loading, setLoading] = useState(false); // লোডিং স্টেট যোগ করা হয়েছে
+    const [loading, setLoading] = useState(false); 
     const { createUser, updateDetails, setUser, googleSignin } = useContext(AuthContext);
 
     const handleRegister = async (e) => {
         e.preventDefault();
-        setLoading(true); // লোডিং শুরু
+        setLoading(true); 
         
         try {
             const form = e.target;
@@ -82,6 +83,11 @@ const Register = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center p-4">
+            <Helmet>
+                <title>
+                    Signup New Account - KnowSpire
+                </title>
+            </Helmet>
             <div className="mt-7   shadow shadow-gray-200 rounded-xl w-full max-w-md">
                 <div className="p-4 sm:p-7">
                     <div className="text-center">
@@ -161,7 +167,7 @@ const Register = () => {
                                     <label htmlFor="photo" className="block  text-sm mb-2">Photo URL</label>
                                     <div className="relative">
                                         <input 
-                                            type="text" 
+                                            type="url" 
                                             id="photo" 
                                             name="photo" 
                                             className="py-2.5 sm:py-3 px-4 block w-full  border border-gray-300 rounded-lg sm:text-sm focus:outline-none focus:border-violet-500 " 

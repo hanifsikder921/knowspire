@@ -5,6 +5,7 @@ import { FaEdit, FaTrash } from 'react-icons/fa';
 import { LuEye } from 'react-icons/lu';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { Helmet } from 'react-helmet-async';
 
 const MyArticles = () => {
     const { user } = useContext(AuthContext);
@@ -128,6 +129,9 @@ const MyArticles = () => {
 
     return (
         <div className="max-w-6xl mx-auto px-4 py-8">
+            <Helmet>
+                <title>My Article - Knowspire</title>
+            </Helmet>
             <h2 className="text-3xl font-bold mb-6 text-center text-primary">My Articles</h2>
 
             <Link to="/postArticles">
