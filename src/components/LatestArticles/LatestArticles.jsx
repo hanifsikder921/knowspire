@@ -44,7 +44,7 @@ const LatestArticles = () => {
                         key={article._id}
                         className="bg-white  p-4 rounded-lg transition-transform duration-300 ease-in-out transform hover:scale-[1.03] hover:shadow-md hover:shadow-amber-200"
                     >
-                        <Link to={`/details/${article._id}`}>
+                        <Link to={`/details/${article._id}`}  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} >
                             <div>
                                 <img
                                     src={article.thumbnail}
