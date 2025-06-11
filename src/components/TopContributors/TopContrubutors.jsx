@@ -78,6 +78,7 @@ const TopContributors = () => {
                             <p className="text-sm text-gray-500">{contributor.authorEmail}</p>
                             <Link 
                                 to={`/contri/${encodeURIComponent(contributor.authorEmail)}`}
+                                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                                 className="btn btn-primary my-2"
                             >
                                 View Articles

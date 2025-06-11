@@ -9,6 +9,7 @@ import { GrFavorite } from "react-icons/gr";
 import { Helmet } from 'react-helmet-async';
 import PageWrapper from '../../components/TransitionWrapper/PageWrapper';
 
+
 const Details = () => {
     const article = useLoaderData();
     const { user } = useContext(AuthContext)
@@ -20,7 +21,6 @@ const Details = () => {
     const [editCommentText, setEditCommentText] = useState('');
     const location = useLocation();
 
-    window.scrollTo({ top: 0, behavior: 'smooth' })
 
     const {
         _id,
@@ -182,6 +182,7 @@ const Details = () => {
     }
 
     return (
+
         <PageWrapper>
             <div className='md:max-w-7xl  mx-auto p-2 grid grid-cols-1 md:grid-cols-3 gap-4'>
                 <Helmet title={`${title} - Knowspire`}></Helmet>
@@ -336,6 +337,7 @@ const Details = () => {
 
             </div>
         </PageWrapper>
+
     );
 };
 

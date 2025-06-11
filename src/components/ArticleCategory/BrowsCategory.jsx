@@ -42,7 +42,7 @@ const BrowsCategory = () => {
             >
                 Browse Categories
             </motion.div>
-            <div className='shadow shadow-violet-500 my-8  rounded-lg md:p-25  w-11/12 md:w-full mx-auto p-2 '>
+            <div className='shadow shadow-violet-500 my-8  rounded-lg md:p-25   md:w-full mx-auto p-2 '>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
                     {categories.map(category => (

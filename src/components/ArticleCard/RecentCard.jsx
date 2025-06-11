@@ -20,7 +20,7 @@ const AllArticles = () => {
 
         fetchArticles();
     }, []);
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    // window.scrollTo({ top: 0, behavior: 'smooth' })
 
     if (loading) return <p className="text-center mt-10">Loading articles...</p>;
 
@@ -42,8 +42,14 @@ const AllArticles = () => {
                             <h2 className='text-xl font-semibold mt-2'>{article.title}</h2>
                             <p>{article.content.slice(0, 50)}..</p>
                             <Link to={`/details/${article._id}`}>
-                                <button className='btn btn-sm my-2'>See More</button>
+                                <button
+                                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                                    className="btn btn-sm my-2"
+                                >
+                                    See More
+                                </button>
                             </Link>
+
                         </div>
 
                     </div>
