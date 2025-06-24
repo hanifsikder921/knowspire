@@ -180,6 +180,39 @@ The goal of KnowSpire is to create a student-friendly platform where anyone can:
 
 ---
 
+
+## 🛠️ How to Run Locally
+
+### 1. Clone the repository:
+```bash
+git clone https://github.com/hanifsikder921/knowspire.git
+```
+
+### 2. Navigate to the project directory:
+```bash
+cd knowspire
+```
+
+### 3. Install the dependencies:
+```bash
+npm install
+```
+
+### 4. (If using Tailwind manually):
+```bash
+npx tailwindcss -i ./src/input.css -o ./src/output.css --watch
+```
+
+### 5. Run the development server:
+```bash
+npm run dev
+```
+
+### 6. Visit in your browser:
+```bash
+http://localhost:5173
+```
+
 ## 🧑‍💻 Author
 
 **Hanif Sikder**  
