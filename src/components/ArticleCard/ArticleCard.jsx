@@ -19,7 +19,7 @@ const ArticleCard = ({ article }) => {
 
                 <div className="grid gap-6">
 
-                    <div className="group relative block rounded-xl focus:outline-hidden hover:shadow-md hover:shadow-amber-300 cursor-pointer duration-300" >
+                    <div className="group relative block rounded-xl focus:outline-hidden hover:shadow-md  cursor-pointer duration-300" >
                         <div className="shrink-0 relative rounded-xl overflow-hidden w-full h-87.5 before:absolute before:inset-x-0 before:z-1 before:size-full before:bg-linear-to-t before:from-gray-900/80">
                             <img className="size-full absolute top-0 start-0 object-cover transition-transform duration-500 group-hover:scale-105" src={thumbnail} alt="Blog Image" />
                         </div>
@@ -61,7 +61,7 @@ const ArticleCard = ({ article }) => {
                             </div>
                         </div>
                         <div>
-                            <p className='bg-gradient-to-r from-[#2b2bff] to-[#ff00cc] text-white absolute top-0 z-10 right-0 px-2 py-1 rounded-bl-xl text-sm'>{category}</p>
+                            <p className='bg-gradient-to-r from-[#2b2bff] to-[#ff00cc] text-white absolute top-0 z-10 right-0 px-2 py-1 rounded-bl-xl rounded-tr-xl text-sm'>{category}</p>
                         </div>
                     </div>
 
