@@ -40,54 +40,54 @@ const TopContributors = () => {
     if (loading) return <p className="text-center my-10">Loading contributors...</p>;
 
     return (
-        <div className="my-10">
-            <motion.div
-                className="divider divider-primary w-11/12 md:text-3xl font-semibold text-center mb-6 text-white md:w-6/12 mx-auto md:mt-25"
-                animate={{
-                    color: ["#8e44ad", "#60a5fa", "#facc15", "#f472b6", "#8e44ad"]
-                }}
-                transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                }}
-            >
-                Top Contributors
-            </motion.div>
+      <div className="my-10">
+        <motion.div
+          className="divider divider-primary w-11/12 md:text-3xl font-semibold text-center mb-6 text-white md:w-6/12 mx-auto md:mt-25"
+          animate={{
+            color: ['#ff00cc', '#2b2bff'],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        >
+          Top Contributors
+        </motion.div>
 
-            <section className='md:p-18 p-2 shadow shadow-emerald-300 rounded-xl'>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                    {contributors.map((contributor, index) => (
-                        <motion.div
-                            key={contributor.authorEmail}
-                            className="bg-white shadow-md p-4 rounded-lg text-center"
-                            animate={{ y: [0, -10, 10, 0] }}
-                            transition={{
-                                duration: 4,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                                delay: index * 0.5,
-                            }}
-                        >
-                            <img
-                                src={contributor.authorAvatar}
-                                alt={contributor.authorName}
-                                className="w-16 h-16 rounded-full object-cover mx-auto mb-2"
-                            />
-                            <h4 className="text-lg text-gray-700 font-semibold">{contributor.authorName}</h4>
-                            <p className="text-sm text-gray-500">{contributor.authorEmail}</p>
-                            <Link 
-                                to={`/contri/${encodeURIComponent(contributor.authorEmail)}`}
-                                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                                className="btn btn-primary my-2"
-                            >
-                                View Articles
-                            </Link>
-                        </motion.div>
-                    ))}
-                </div>
-            </section>
-        </div>
+        <section className="md:p-18 p-2 shadow shadow-violet-200 rounded-xl">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            {contributors.map((contributor, index) => (
+              <motion.div
+                key={contributor.authorEmail}
+                className="bg-white shadow-md p-4 rounded-lg text-center"
+                animate={{ y: [0, -10, 10, 0] }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                  delay: index * 0.5,
+                }}
+              >
+                <img
+                  src={contributor.authorAvatar}
+                  alt={contributor.authorName}
+                  className="w-16 h-16 rounded-full object-cover mx-auto mb-2"
+                />
+                <h4 className="text-lg text-gray-700 font-semibold">{contributor.authorName}</h4>
+                <p className="text-sm text-gray-500">{contributor.authorEmail}</p>
+                <Link
+                  to={`/contri/${encodeURIComponent(contributor.authorEmail)}`}
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  className="btn btn-primary my-2"
+                >
+                  View Articles
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+      </div>
     );
 };
 

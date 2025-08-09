@@ -48,7 +48,7 @@ const CatArticleCard = ({ article }) => {
           <Link
             to={`/details/${article?._id}`}
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="px-4 py-2 rounded-md bg-gradient-to-r from-[#2b2bff] to-[#ff00cc] text-white"
+            className="px-4 py-2 rounded-md bg-gradient-to-r from-[#2b2bff] to-[#ff00cc] text-white hover:font-semibold duration-200"
           >
             READ MORE
           </Link>
