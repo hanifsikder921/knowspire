@@ -63,38 +63,43 @@ const Navbar = () => {
     }, []);
 
     const menu = (
-        <div className="flex flex-col md:flex-row md:gap-10 gap-3 md:items-center">
-            {[
-                { path: "/", label: "Home" },
-                { path: "/allArticles", label: "All Articles" },
-                { path: "/about", label: "About" },
-                { path: "/support", label: "Contact Us" },
-            ].map(({ path, label }) => (
-                <NavLink
-                    key={path}
-                    to={path}
-                    className={({ isActive }) =>
-                        `font-semibold transition-colors duration-300 text-base-content relative z-10 ${isActive
-                            ? 'px-4 py-2 rounded-md bg-gradient-to-r from-[#2b2bff] to-[#ff00cc] text-white'
-                            : ' hover:text-blue-500'
-                        }`
-                    }
-                >
-                    {label}
-                </NavLink>
-            ))}
-            {
-                user ? (
-                    <button className="block md:hidden px-4 py-2 text-white rounded-md hover:bg-orange-600 transition">
-                        <Link onClick={handleLogout} to="/auth/login" className="btn">Logout</Link>
-                    </button>
-                ) : (
-                    <button className="block md:hidden px-4 py-2 text-white rounded-md hover:bg-orange-600 transition">
-                        <Link to="/auth/login" className="btn">Login</Link>
-                    </button>
-                )
+      <div className="flex flex-col md:flex-row md:gap-10 gap-3 md:items-center">
+        {[
+          { path: '/', label: 'Home' },
+          ...(user ? [{ path: '/postArticles', label: 'Add Article' }] : []),
+          ...(user ? [{ path: `/my-added-article/${user?.email}`, label: 'My Articles' }] : []),
+          { path: '/allArticles', label: 'All Articles' },
+          { path: '/about', label: 'About' },
+          { path: '/support', label: 'Contact Us' },
+        ].map(({ path, label }) => (
+          <NavLink
+            key={path}
+            to={path}
+            className={({ isActive }) =>
+              `font-semibold transition-colors duration-300 text-base-content relative z-10 ${
+                isActive
+                  ? 'px-4 py-2 rounded-md bg-gradient-to-r from-[#2b2bff] to-[#ff00cc] text-white'
+                  : ' hover:text-blue-500'
+              }`
             }
-        </div>
+          >
+            {label}
+          </NavLink>
+        ))}
+        {user ? (
+          <button className="block md:hidden px-4 py-2 text-white rounded-md hover:bg-orange-600 transition">
+            <Link onClick={handleLogout} to="/auth/login" className="btn">
+              Logout
+            </Link>
+          </button>
+        ) : (
+          <button className="block md:hidden px-4 py-2 text-white rounded-md hover:bg-orange-600 transition">
+            <Link to="/auth/login" className="btn">
+              Login
+            </Link>
+          </button>
+        )}
+      </div>
     );
 
     return loading ? (

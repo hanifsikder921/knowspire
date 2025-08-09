@@ -32,7 +32,7 @@ const PopularArticle = () => {
             const res = await fetch(`${import.meta.env.VITE_API_URL}/articles`);
             const articles = await res.json();
 
-            // Extract unique categories from articles
+            
             const uniqueCategories = [...new Set(articles.map(article => article.category))];
             setCategories(uniqueCategories);
         } catch (err) {
