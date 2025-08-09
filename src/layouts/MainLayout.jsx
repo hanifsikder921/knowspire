@@ -8,7 +8,7 @@ const MainLayout = () => {
     return (
 
         <div className="min-h-screen flex flex-col">
-            <header className='border-b border-base-300'>
+            <header className='border-b border-base-300 sticky top-0 z-50 backdrop-blur-2xl'>
                 <Navbar />
             </header>
 
